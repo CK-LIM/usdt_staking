@@ -38,7 +38,9 @@ function StakeMenu(props) {
                                 <div className='kXLvz mb-4 mt-4'><b>Welcome to MarginX Staking Program</b></div>
                                 <ButtonGroup>
                                     <div className='mr-3'>
+                                    <Link to="/staking/liquidity">
                                         <Buttons className="textWhiteLarge center" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Start Earning</Buttons>
+                                        </Link>
                                     </div>
                                     <div>
                                         <Buttons className="textWhiteLarge center" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Learnt more</Buttons>
