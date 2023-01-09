@@ -20,13 +20,13 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
         rel="noopener noreferrer"
         className="countdown-link"
       >
-        <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 3} />
+        <DateTimeDisplay value={days} type={'days'} isDanger={days <= 3} />
         {/* <p>:</p> */}
-        <DateTimeDisplay value={hours} type={'Hours'} isDanger={false} />
+        <DateTimeDisplay value={hours} type={'hours'} isDanger={false} />
         {/* <p>:</p> */}
-        <DateTimeDisplay value={minutes} type={'Mins'} isDanger={false} />
+        <DateTimeDisplay value={minutes} type={'mins'} isDanger={false} />
         {/* <p>:</p> */}
-        <DateTimeDisplay value={seconds} type={'Secs'} isDanger={false} />
+        {/* <DateTimeDisplay value={seconds} type={'Secs'} isDanger={false} /> */}
       </a>
     </div>
   );

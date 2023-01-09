@@ -3,29 +3,10 @@ import Web3 from 'web3'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-import LpToken from '../abis/Interface/LpToken.json'
-import IPancakePair from '../abis/Interface/IPancakePair.json'
-import BavaToken from '../abis/BavaToken.json'
-import BavaMasterFarmerV2_1 from '../abis/BavaMasterFarmerV2.json'
-import BavaMasterFarmerV1 from '../abis/BavaMasterFarmerV1.json'
-import BavaMasterFarmerV2_2 from '../abis/BavaMasterFarmerV2_2.json'
-import BavaMasterFarmerV2_3 from '../abis/BavaMasterFarmerV2_3.json'
-import BavaMasterFarmerUpgradeable from '../abis/BavaMasterFarmerUpgradeable.json'
-import BavaAirdrop from '../abis/BavaAirdrop.json'
-import StakingRewards from '../abis/StakingRewards.json'
-
-import BavaCompoundPool from '../abis/BavaCompoundPool.json'
-import BavaCompoundPoolVariable from '../abis/BavaCompoundPoolVariable.json'
-import BavaCompoundVault_VariableUpgradeable from '../abis/BavaCompoundVault_VariableUpgradeable.json'
-import CollateralVault from '../abis/CollateralVault.json'
-import SyntheticPool from '../abis/SyntheticPool.json'
-import USBLiquidityPool from '../abis/USBLiquidityPool.json'
-import USBSwapLocker from '../abis/USBSwapLocker.json'
 import SystemCoin from '../abis/SystemCoin.json'
-import AvaxChainlinkOracle from '../abis/AvaxChainlinkOracle.json'
-import LiquidityStakingV1 from '../abis/LiquidityStakingV1.json'
+// import LiquidityStakingV1 from '../abis/LiquidityStakingV1.json'
+import LiquidityStakingV1 from '../abis/LiquidityStakingV2.json'
 import Treasury from '../abis/Treasury.json'
-
 
 import NavbMenu from './navbar/NavbarMenu'
 import Stake from './stake/Stake'
@@ -44,7 +25,7 @@ class App extends Component {
       if ((this.state.wallet || this.state.walletConnect) == true) {
         await this.loadBlockchainUserData()
       }
-      await this.delay(30000);
+      await this.delay(10000);
     }
   }
 
@@ -127,7 +108,7 @@ class App extends Component {
     }
 
     // Load contract
-    const fxToken = new web3Eth.eth.Contract(BavaToken.abi, process.env.REACT_APP_fxtoken_address)
+    const fxToken = new web3Eth.eth.Contract(SystemCoin.abi, process.env.REACT_APP_fxtoken_address)
     const liquidityStakingV1 = new web3Eth.eth.Contract(LiquidityStakingV1.abi, process.env.REACT_APP_liquiditystakingV1_address)
     const treasury = new web3Eth.eth.Contract(Treasury.abi, process.env.REACT_APP_treasury_address)
     const usdtToken = new web3Eth.eth.Contract(SystemCoin.abi, process.env.REACT_APP_usdt_address)
@@ -143,6 +124,7 @@ class App extends Component {
     let response3 = this.loadTreasuryRewardAmount()
     let response4 = this.loadPoolBlackoutWindow()
     let response5 = this.loadPoolEpochParam()
+    let response6 = this.loadPoolStartOfCurrentEpoch()
 
     let poolSize = await response0
     let poolRewardRate = await response1
@@ -150,7 +132,8 @@ class App extends Component {
     let treasuryRewardRemaining = await response3
     let poolBlackoutWindow = await response4
     let poolEpochInterval = await response5
-
+    let poolStartOfCurrentEpoch = await response6
+    let poolEndOfCurrentEpoch = parseInt(poolStartOfCurrentEpoch) + parseInt(poolEpochInterval)
 
     this.setState({ poolSize })
     this.setState({ poolRewardRate })
@@ -158,6 +141,7 @@ class App extends Component {
     this.setState({ treasuryRewardRemaining })
     this.setState({ poolBlackoutWindow })
     this.setState({ poolEpochInterval })
+    this.setState({ poolEndOfCurrentEpoch })
 
     this.setState({ blockchainLoading: true })
   }
@@ -187,7 +171,7 @@ class App extends Component {
     let timeRemainingNextBlackout = 0
     let blackoutWindow = await this.state.liquidityStakingV1.methods.getBlackoutWindow().call()
     let poolTimeRemainingInCurrentEpoch = await this.state.liquidityStakingV1.methods.getTimeRemainingInCurrentEpoch().call()
-    if (poolTimeRemainingInCurrentEpoch >= blackoutWindow) {
+    if (parseInt(poolTimeRemainingInCurrentEpoch) >= parseInt(blackoutWindow)) {
       timeRemainingNextBlackout = poolTimeRemainingInCurrentEpoch - blackoutWindow
     } else {
       timeRemainingNextBlackout = 0
@@ -200,12 +184,18 @@ class App extends Component {
     return poolEpochParam[0]
   }
 
+  async loadPoolStartOfCurrentEpoch() {
+    let currentEpochNum = await this.state.liquidityStakingV1.methods.getCurrentEpoch().call()
+    let startOfCurrentRpoch = await this.state.liquidityStakingV1.methods.getStartOfEpoch(currentEpochNum).call()
+    return startOfCurrentRpoch
+  }
 
   /* **************************************************************************************************************
   * ************** Load User blockchain data **********************************************************************
   * ***************************************************************************************************************/
 
   async loadBlockchainUserData() {
+    console.log("123")
     let userResponse0 = this.loadUserUSDTBalance()
     let userResponse1 = this.loadUserStakedBalance()
     let userResponse2 = this.loadUserUSDTStakingAllowance()
@@ -213,11 +203,11 @@ class App extends Component {
     let userResponse4 = this.loadUserWithdrawableAmount()
     let userResponse5 = this.loadUserInactiveBalanceNextEpoch()
 
-
     let userUSDTBalance = await userResponse0
     let userStakedBalance = await userResponse1
     let userUSDTStakingAllowance = await userResponse2
     let userEarnedRewardAmount = await userResponse3
+    console.log(userEarnedRewardAmount)
     let userWithdrawableAmount = await userResponse4
     let userInactiveBalanceNextEpoch = await userResponse5
 
@@ -230,7 +220,6 @@ class App extends Component {
 
     this.setState({ accountLoading: true })
   }
-
 
   //  Async User Info Function
   async loadUserUSDTBalance() {
@@ -249,8 +238,8 @@ class App extends Component {
   }
 
   async loadUserEarnedRewardAmount() {
-    let earnedAmount = "0"
-    return earnedAmount
+    let userReward = await this.state.liquidityStakingV1.methods.getStakerReward(this.state.account).call()
+    return userReward
   }
 
   async loadUserWithdrawableAmount() {
@@ -363,7 +352,7 @@ class App extends Component {
     const accounts = await window.web3Con.eth.getAccounts();
     const chainId = await window.provider.request('eth_chainId');
     this.setState({ account: accounts[0] })
-    const first4Account = this.state.account.substring(0, 4)
+    const first4Account = this.state.account.substring(0, 5)
     const last4Account = this.state.account.slice(-4)
     this.setState({ first4Account: first4Account })
     this.setState({ last4Account: last4Account })
@@ -454,7 +443,7 @@ class App extends Component {
     } else if (accounts[0] !== this.state.account) {
       const accounts = await window.web3.eth.getAccounts()
       this.setState({ account: accounts[0] })
-      const first4Account = this.state.account.substring(0, 4)
+      const first4Account = this.state.account.substring(0, 5)
       const last4Account = this.state.account.slice(-4)
       this.setState({ first4Account: first4Account })
       this.setState({ last4Account: last4Account })
@@ -525,7 +514,7 @@ class App extends Component {
     // Run any other necessary logic...
   }
 
-  addBAVATokenWallet = async () => {
+  addFXTokenWallet = async () => {
     // We recommend reloading the page, unless you must do otherwise
     window.ethereum
       .request({
@@ -533,10 +522,10 @@ class App extends Component {
         params: {
           type: 'ERC20',
           options: {
-            address: process.env.REACT_APP_bavatoken_address,
-            symbol: 'BAVA',
+            address: process.env.REACT_APP_fxtoken_address,
+            symbol: 'FX',
             decimals: 18,
-            image: 'https://assets.coingecko.com/coins/images/23780/small/200x200_BAVA_LOGO_%282%29.png?1645435712',
+            image: 'https://s2.coinmarketcap.com/static/img/coins/64x64/3884.png',
           },
         },
       })
@@ -551,30 +540,19 @@ class App extends Component {
     // Run any other necessary logic...
   }
 
-  addUSBTokenWallet = async () => {
-    // We recommend reloading the page, unless you must do otherwise
-    window.ethereum
-      .request({
-        method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20',
-          options: {
-            address: process.env.REACT_APP_usb_address,
-            symbol: 'USB',
-            decimals: 18,
-            image: "https://baklava.space/static/media/usb.a711545a.webp",
-          },
-        },
-      })
-      .then((success) => {
-        if (success) {
-          console.log('Successfully added to wallet!');
-        } else {
-          throw new Error('Something went wrong.');
-        }
-      })
-      .catch(console.error);
-    // Run any other necessary logic...
+  setWalletTrigger = async (state) => {
+    if (state == false) {
+      await this.setState({ wallet: state })
+      this.setState({ accountLoading: state })
+    } else {
+      const accounts = await window.web3.eth.getAccounts()
+      this.setState({ account: accounts[0] })
+      const first4Account = this.state.account.substring(0, 5)
+      const last4Account = this.state.account.slice(-4)
+      this.setState({ first4Account: first4Account })
+      this.setState({ last4Account: last4Account })
+      this.setState({ wallet: state })
+    }
   }
 
   delay = ms => new Promise(res => setTimeout(res, ms));
@@ -595,348 +573,48 @@ class App extends Component {
 
 
 
-
-  deposit = async (i, amount, v) => {
-    let bavaMasterFarmer
-    let bavaCompoundPool
-    let intWeb3
-    if (this.state.walletConnect == true) {
-      intWeb3 = window.web3Con
-    } else if (this.state.wallet == true) {
-      intWeb3 = window.web3
-    }
-
-    if (v == 1) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV1.abi, process.env.REACT_APP_bavamasterfarmv1_address)
-    } else if (v == 2) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_1.abi, process.env.REACT_APP_bavamasterfarmv2_1address)
-    } else if (v == 3) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_2.abi, process.env.REACT_APP_bavamasterfarmv2_2address)
-    } else if (v == 4) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_3.abi, process.env.REACT_APP_bavamasterfarmv2_3address)
-      let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).poolContract
-      bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundPool.abi, poolAddress)
-    } else if (v == 5) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerUpgradeable.abi, process.env.REACT_APP_upgradeablebavamasterfarm_address)
-      let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).vaultAddress
-      bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundVault_VariableUpgradeable.abi, poolAddress)
-    }
-
-    if (v == 4 || v == 5) {
-      await bavaCompoundPool.methods.deposit(amount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    } else {
-      await bavaMasterFarmer.methods.deposit(i, amount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  approve = async (i, v) => {
-    let lpTokenAddress
-    let bavaVaultAddress
-    let lpToken
-    let intWeb3
-
-    if (this.state.walletConnect == true) {
-      intWeb3 = window.web3Con
-    } else if (this.state.wallet == true) {
-      intWeb3 = window.web3
-    }
-
-    if (v == 1) {
-      lpTokenAddress = this.state.poolSegmentInfoV1[i].lpAddresses[this.state.farmNetworkId]
-      bavaVaultAddress = this.state.bavaMasterFarmerV1._address
-    } else if (v == 2) {
-      lpTokenAddress = this.state.poolSegmentInfo[i].lpAddresses[this.state.farmNetworkId]
-      bavaVaultAddress = this.state.bavaMasterFarmer._address
-    } else if (v == 3) {
-      lpTokenAddress = this.state.poolSegmentInfoV2_2[i].lpAddresses[this.state.farmNetworkId]
-      bavaVaultAddress = this.state.bavaMasterFarmerV2_2._address
-    } else if (v == 4) {
-      let bavaMasterFarmer = new window.web3.eth.Contract(BavaMasterFarmerV2_3.abi, process.env.REACT_APP_bavamasterfarmv2_3address)
-      lpTokenAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).lpToken
-      bavaVaultAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).poolContract
-    } else if (v == 5) {
-      let bavaMasterFarmer = new window.web3.eth.Contract(BavaMasterFarmerUpgradeable.abi, process.env.REACT_APP_upgradeablebavamasterfarm_address)
-      lpTokenAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).lpToken
-      bavaVaultAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).vaultAddress
-    }
-
-    lpToken = new intWeb3.eth.Contract(LpToken.abi, lpTokenAddress)
-    await lpToken.methods.approve(bavaVaultAddress, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        // If this happens, the user rejected the connection request.
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  withdraw = async (i, amount, v) => {
-    let bavaMasterFarmer
-    let bavaCompoundPool
-    let intWeb3
-
-    if (this.state.walletConnect == true) {
-      intWeb3 = window.web3Con
-    } else if (this.state.wallet == true) {
-      intWeb3 = window.web3
-    }
-
-    if (v == 1) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV1.abi, process.env.REACT_APP_bavamasterfarmv1_address)
-    } else if (v == 2) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_1.abi, process.env.REACT_APP_bavamasterfarmv2_1address)
-    } else if (v == 3) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_2.abi, process.env.REACT_APP_bavamasterfarmv2_2address)
-    } else if (v == 4) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_3.abi, process.env.REACT_APP_bavamasterfarmv2_3address)
-      let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).poolContract
-      bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundPool.abi, poolAddress)
-    } else if (v == 5) {
-      bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerUpgradeable.abi, process.env.REACT_APP_upgradeablebavamasterfarm_address)
-      let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).vaultAddress
-      bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundVault_VariableUpgradeable.abi, poolAddress)
-    }
-
-    if (v == 4 || v == 5) {
-      await bavaCompoundPool.methods.withdraw(amount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    } else {
-      await bavaMasterFarmer.methods.withdraw(i, amount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  harvest = async (i, v) => {
-    let bavaMasterFarmer
-    let bavaCompoundPool
-    let intWeb3
-
-    if (this.state.walletConnect == true) {
-      intWeb3 = window.web3Con
-    } else if (this.state.wallet == true) {
-      intWeb3 = window.web3
-    }
-
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (v == 1) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV1.abi, process.env.REACT_APP_bavamasterfarmv1_address)
-        if (this.state.pendingSegmentRewardV1[i] <= 0) {
-          alert("No token to harvest! Please deposit LP to earn BAVA")
-          return
-        }
-      } else if (v == 2) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_1.abi, process.env.REACT_APP_bavamasterfarmv2_1address)
-        if (this.state.pendingSegmentRewardV2_1[i] <= 0) {
-          alert("No token to harvest! Please deposit LP to earn BAVA")
-          return
-        }
-      } else if (v == 3) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_2.abi, process.env.REACT_APP_bavamasterfarmv2_2address)
-        if (this.state.pendingSegmentRewardV2_2[i] <= 0) {
-          alert("No token to harvest! Please deposit LP to earn BAVA")
-          return
-        }
-      } else if (v == 4) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerV2_3.abi, process.env.REACT_APP_bavamasterfarmv2_3address)
-        let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).poolContract
-        bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundPool.abi, poolAddress)
-        if (this.state.pendingSegmentRewardV2_3[i] <= 0) {
-          alert("No token to harvest! Please deposit LP to earn BAVA")
-          return
-        }
-      } else if (v == 5) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerUpgradeable.abi, process.env.REACT_APP_upgradeablebavamasterfarm_address)
-        let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).vaultAddress
-        bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundVault_VariableUpgradeable.abi, poolAddress)
-        if (this.state.pendingSegmentRewardUpgradeable[i] <= 0) {
-          alert("No token to harvest! Please deposit LP to earn BAVA")
-          return
-        }
-      }
-
-      if (v == 4 || v == 5) {
-        bavaCompoundPool.methods.claimReward().send({ from: this.state.account }).then(async (result) => {
-          this.loadBlockchainUserData()
-        }).catch((err) => {
-          if (err.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            // If this happens, the user rejected the connection request.
-            alert("Something went wrong...Code: 4001 User rejected the request.")
-          } else {
-            console.error(err);
-          }
-        });
-      } else {
-        bavaMasterFarmer.methods.claimReward(i).send({ from: this.state.account }).then(async (result) => {
-          this.loadBlockchainUserData()
-        }).catch((err) => {
-          if (err.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            // If this happens, the user rejected the connection request.
-            alert("Something went wrong...Code: 4001 User rejected the request.")
-          } else {
-            console.error(err);
-          }
-        });
-      }
-    }
-  }
-
-  reinvest = async (i, v) => {
-    let bavaMasterFarmer
-    let bavaCompoundPool
-    let intWeb3
-
-    if (this.state.walletConnect == true) {
-      intWeb3 = window.web3Con
-    } else if (this.state.wallet == true) {
-      intWeb3 = window.web3
-    }
-
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (v == 4) {
-        bavaMasterFarmer = new window.web3.eth.Contract(BavaMasterFarmerV2_3.abi, process.env.REACT_APP_bavamasterfarmv2_3address)
-        let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).poolContract
-        bavaCompoundPool = new window.web3.eth.Contract(BavaCompoundPool.abi, poolAddress)
-      } else if (v == 5) {
-        bavaMasterFarmer = new intWeb3.eth.Contract(BavaMasterFarmerUpgradeable.abi, process.env.REACT_APP_upgradeablebavamasterfarm_address)
-        let poolAddress = (await bavaMasterFarmer.methods.poolInfo(i).call()).vaultAddress
-        bavaCompoundPool = new intWeb3.eth.Contract(BavaCompoundVault_VariableUpgradeable.abi, poolAddress)
-      }
-
-      await bavaCompoundPool.methods.reinvest().send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-
-  checkAirdrop = async (address) => {
-    let checksum = window.web3Eth.utils.toChecksumAddress(address)
-    if (checksum in this.state.airdropList) {
-      this.setState({ validAirdrop: true })
-    } else {
-      this.setState({ validAirdrop: false })
-    }
-    this.setState({ airdropCheck: true })
-  }
-
-  claimAirdrop = async () => {
-    let bavaAirdrop
-    if (this.state.walletConnect == true) {
-      bavaAirdrop = new window.web3Con.eth.Contract(BavaAirdrop.abi, process.env.REACT_APP_airdrop_address)
-    } else if (this.state.wallet == true) {
-      bavaAirdrop = new window.web3.eth.Contract(BavaAirdrop.abi, process.env.REACT_APP_airdrop_address)
-    }
-    if ((Date.now() / 1000).toFixed(0) < this.state.airdropStart) {
-      alert("Distribution not started yet")
-    } else if ((Date.now() / 1000).toFixed(0) > this.state.airdropEnd) {
-      alert("Distribution already end")
-    } else {
-      if ((this.state.account in this.state.airdropList) == true) {
-        let processed = await bavaAirdrop.methods.processedAirdrops(this.state.account, this.state.airdropIteration).call()
-        if (processed == false) {
-          let hash = this.state.airdropList[this.state.account]
-          await bavaAirdrop.methods.claimTokens(hash).send({ from: this.state.account }).then(async (result) => {
-          }).catch((err) => {
-            if (err.code === 4001) {
-              // EIP-1193 userRejectedRequest error
-              // If this happens, the user rejected the connection request.
-              alert("Something went wrong...Code: 4001 User rejected the request.")
-            } else {
-              console.error(err);
-            }
-          });
-        } else {
-          alert("Airdrop already claimed from this address")
-        }
-      }
-    }
-  }
-
-  approveStake = async () => {
-    let bavaToken
-    if (this.state.walletConnect == true) {
-      bavaToken = new window.web3Con.eth.Contract(BavaToken.abi, process.env.REACT_APP_bavatoken_address)
-    } else if (this.state.wallet == true) {
-      bavaToken = new window.web3.eth.Contract(BavaToken.abi, process.env.REACT_APP_bavatoken_address)
-    }
-    await bavaToken.methods.approve(process.env.REACT_APP_staking_rewards_address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        // If this happens, the user rejected the connection request.
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
+  /* ============================== Smart Contract function ==============================
+  */
   stake = async (amount) => {
-    let bavaStake
+    let liquidityStaking
+    let intWeb3
+
     if (this.state.walletConnect == true) {
-      bavaStake = new window.web3Con.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3Con
     } else if (this.state.wallet == true) {
-      bavaStake = new window.web3.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3
     }
-    await bavaStake.methods.stake(amount).send({ from: this.state.account }).then((result) => {
-      this.loadBlockchainUserData()
+
+    liquidityStaking = new intWeb3.eth.Contract(LiquidityStakingV1.abi, process.env.REACT_APP_liquiditystakingV1_address)
+    await liquidityStaking.methods.stake(amount).send({ from: this.state.account }).then(async (result) => {
+      await this.loadBlockchainData()
+      await this.loadBlockchainUserData()
+    }).catch((err) => {
+      if (err.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        // If this happens, the user rejected the connection request.
+        alert("Something went wrong...Code: 4001 User rejected the request.")
+      } else {
+        console.error(err);
+      }
+    });
+    
+  }
+
+  approve = async () => {
+    let usdtToken
+    let intWeb3
+
+    if (this.state.walletConnect == true) {
+      intWeb3 = window.web3Con
+    } else if (this.state.wallet == true) {
+      intWeb3 = window.web3
+    }
+
+    let spenderAddress = process.env.REACT_APP_liquiditystakingV1_address
+    usdtToken = new intWeb3.eth.Contract(SystemCoin.abi, process.env.REACT_APP_usdt_address)
+    await usdtToken.methods.approve(spenderAddress, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
+      await this.loadBlockchainUserData()
     }).catch((err) => {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
@@ -948,15 +626,20 @@ class App extends Component {
     });
   }
 
-  unstake = async (amount) => {
-    let bavaStake
+  withdraw = async (amount) => {
+    let liquidityStaking
+    let intWeb3
+
     if (this.state.walletConnect == true) {
-      bavaStake = new window.web3Con.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3Con
     } else if (this.state.wallet == true) {
-      bavaStake = new window.web3.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3
     }
-    await bavaStake.methods.withdraw(amount).send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
+
+    liquidityStaking = new intWeb3.eth.Contract(LiquidityStakingV1.abi, process.env.REACT_APP_liquiditystakingV1_address)
+    await liquidityStaking.methods.withdrawStake(this.state.account, amount).send({ from: this.state.account }).then(async (result) => {
+      await this.loadBlockchainData()
+      await this.loadBlockchainUserData()
     }).catch((err) => {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
@@ -968,15 +651,20 @@ class App extends Component {
     });
   }
 
-  getReward = async () => {
-    let bavaStake
+  requestWithdraw = async (amount) => {
+    let liquidityStaking
+    let intWeb3
+
     if (this.state.walletConnect == true) {
-      bavaStake = new window.web3Con.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3Con
     } else if (this.state.wallet == true) {
-      bavaStake = new window.web3.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3
     }
-    await bavaStake.methods.getReward().send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
+
+    liquidityStaking = new intWeb3.eth.Contract(LiquidityStakingV1.abi, process.env.REACT_APP_liquiditystakingV1_address)
+    await liquidityStaking.methods.requestWithdrawal(amount).send({ from: this.state.account }).then(async (result) => {
+      await this.loadBlockchainData()
+      await this.loadBlockchainUserData()
     }).catch((err) => {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
@@ -988,15 +676,19 @@ class App extends Component {
     });
   }
 
-  exit = async (amount) => {
-    let bavaStake
+  claimReward = async () => {
+    let liquidityStaking
+    let intWeb3
+
     if (this.state.walletConnect == true) {
-      bavaStake = new window.web3Con.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3Con
     } else if (this.state.wallet == true) {
-      bavaStake = new window.web3.eth.Contract(StakingRewards.abi, process.env.REACT_APP_staking_rewards_address)
+      intWeb3 = window.web3
     }
-    await bavaStake.methods.exit().send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
+
+    liquidityStaking = new intWeb3.eth.Contract(LiquidityStakingV1.abi, process.env.REACT_APP_liquiditystakingV1_address)
+    await liquidityStaking.methods.claimRewards(this.state.account).send({ from: this.state.account }).then(async (result) => {
+      await this.loadBlockchainUserData()
     }).catch((err) => {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
@@ -1008,408 +700,6 @@ class App extends Component {
     });
   }
 
-  /**
-   * @description - Collateral pool function
-   * @param {*} i - pool index
-   * @param {*} collAmount - BRT amount
-   * @param {*} borrowAmount - USB amount
-   */
-
-  depositAndBorrow = async (i, collAmount, borrowAmount) => {
-    let collaVault
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        collaVault = new window.web3Con.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      } else if (this.state.wallet == true) {
-        collaVault = new window.web3.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      }
-      collaVault.methods.joinAndBorrow(i, collAmount, borrowAmount).send({ from: this.state.account }).then(async (result) => {
-        await this.loadBlockchainData()
-        await this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  repayUSB = async (i, repayAmount) => {
-    let collaVault
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        collaVault = new window.web3Con.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      } else if (this.state.wallet == true) {
-        collaVault = new window.web3.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      }
-      collaVault.methods.repaySystemCoin(i, this.state.account, repayAmount).send({ from: this.state.account }).then(async (result) => {
-        await this.loadBlockchainData()
-        await this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  withdrawBRTColl = async (i, withdrawAmount) => {
-    let collaVault
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        collaVault = new window.web3Con.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      } else if (this.state.wallet == true) {
-        collaVault = new window.web3.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-      }
-      collaVault.methods.exit(i, this.state.account, withdrawAmount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  collateralApprove = async (i) => {
-    let collTokenAddress
-    let collToken
-
-    let collateralVault = new window.web3.eth.Contract(CollateralVault.abi, process.env.REACT_APP_collateral_vault_address)
-    collTokenAddress = (await collateralVault.methods.poolInfo(i).call()).collateralToken
-
-    if (this.state.walletConnect == true) {
-      collToken = new window.web3Con.eth.Contract(LpToken.abi, collTokenAddress)
-    } else if (this.state.wallet == true) {
-      collToken = new window.web3.eth.Contract(LpToken.abi, collTokenAddress)
-    }
-    await collToken.methods.approve(this.state.collateralVault._address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  systemCoinCollApprove = async () => {
-    let systemCoin
-
-    if (this.state.walletConnect == true) {
-      systemCoin = new window.web3Con.eth.Contract(LpToken.abi, process.env.REACT_APP_usb_address)
-    } else if (this.state.wallet == true) {
-      systemCoin = new window.web3.eth.Contract(LpToken.abi, process.env.REACT_APP_usb_address)
-    }
-    await systemCoin.methods.approve(this.state.collateralVault._address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  systemCoinSyntheticApprove = async () => {
-    let systemCoin
-    if (this.state.walletConnect == true) {
-      systemCoin = new window.web3Con.eth.Contract(LpToken.abi, process.env.REACT_APP_usb_address)
-    } else if (this.state.wallet == true) {
-      systemCoin = new window.web3.eth.Contract(LpToken.abi, process.env.REACT_APP_usb_address)
-    }
-    await systemCoin.methods.approve(this.state.syntheticPool._address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  synTokenSyntheticApprove = async (i) => {
-    let synTokenAddress
-    let synToken
-
-    let syntheticPool = new window.web3.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-    synTokenAddress = (await syntheticPool.methods.poolInfo(i).call()).syntheticToken
-
-    if (this.state.walletConnect == true) {
-      synToken = new window.web3Con.eth.Contract(LpToken.abi, synTokenAddress)
-    } else if (this.state.wallet == true) {
-      synToken = new window.web3.eth.Contract(LpToken.abi, synTokenAddress)
-    }
-    await synToken.methods.approve(this.state.syntheticPool._address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  synOpenMarketOrder = async (i, orderType, synTokenAmount) => {
-    console.log(i, orderType, synTokenAmount)
-    let syntheticPool
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        syntheticPool = new window.web3Con.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      } else if (this.state.wallet == true) {
-        syntheticPool = new window.web3.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      }
-      if (orderType == 0) {
-        syntheticPool.methods.openMarketOrder(i, "0", synTokenAmount).send({ from: this.state.account }).then(async (result) => {
-          await this.loadBlockchainData()
-          this.loadBlockchainUserData()
-        }).catch((err) => {
-          if (err.code === 4001) {
-            alert("Something went wrong...Code: 4001 User rejected the request.")
-          } else {
-            console.error(err);
-          }
-        });
-      } else if (orderType == 1) {
-        syntheticPool.methods.openMarketOrder(i, "1", synTokenAmount).send({ from: this.state.account }).then(async (result) => {
-          await this.loadBlockchainData()
-          this.loadBlockchainUserData()
-        }).catch((err) => {
-          if (err.code === 4001) {
-            alert("Something went wrong...Code: 4001 User rejected the request.")
-          } else {
-            console.error(err);
-          }
-        });
-      }
-    }
-  }
-
-  synOpenLimitOrder = async (i, orderType, synTokenAmount, synTokenLimitPrice) => {
-    let syntheticPool
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        syntheticPool = new window.web3Con.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      } else if (this.state.wallet == true) {
-        syntheticPool = new window.web3.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      }
-      syntheticPool.methods.openLimitOrder(i, orderType, synTokenAmount, synTokenLimitPrice).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  synCancelOrder = async (i, orderId) => {
-    let syntheticPool
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        syntheticPool = new window.web3Con.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      } else if (this.state.wallet == true) {
-        syntheticPool = new window.web3.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      }
-      syntheticPool.methods.cancelOrder(i, orderId).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  synCancelAllOrder = async (i) => {
-    let syntheticPool
-    if (this.state.walletConnect == false && this.state.wallet == false) {
-      alert("Wallet is not connected")
-    } else {
-      if (this.state.walletConnect == true) {
-        syntheticPool = new window.web3Con.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      } else if (this.state.wallet == true) {
-        syntheticPool = new window.web3.eth.Contract(SyntheticPool.abi, process.env.REACT_APP_synthetic_pool_address)
-      }
-      syntheticPool.methods.cancelAllOrders(i).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  stableCoinSwapApprove = async (i) => {
-    let stableCoinAddress
-    let stableCoin
-
-    stableCoinAddress = this.state.usbLiqPool[i].usdTokenAddresses[this.state.farmNetworkId]
-    console.log(stableCoinAddress)
-    if (this.state.walletConnect == true) {
-      stableCoin = new window.web3Con.eth.Contract(LpToken.abi, stableCoinAddress)
-    } else if (this.state.wallet == true) {
-      stableCoin = new window.web3.eth.Contract(LpToken.abi, stableCoinAddress)
-    }
-    await stableCoin.methods.approve(this.state.usbLiquidityPool._address, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  stableCoinSwap = async (inputID, input2tID, inputAmount) => {
-    let usbPool
-
-    if (this.state.walletConnect == true) {
-      usbPool = new window.web3Con.eth.Contract(USBLiquidityPool.abi, process.env.REACT_APP_usb_liquidity_pool_address)
-    } else if (this.state.wallet == true) {
-      usbPool = new window.web3.eth.Contract(USBLiquidityPool.abi, process.env.REACT_APP_usb_liquidity_pool_address)
-    }
-    if (inputID == 4) {
-      let sellUSBAmount = window.web3Eth.utils.toWei(inputAmount, this.state.usbLiqPool[inputID].decimalUnit)
-      await usbPool.methods.sellUSB(input2tID, sellUSBAmount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    } else {
-      let buyUSBAmount = window.web3Eth.utils.toWei(inputAmount, this.state.usbLiqPool[inputID].decimalUnit)
-      await usbPool.methods.buyUSB(inputID, buyUSBAmount).send({ from: this.state.account }).then(async (result) => {
-        this.loadBlockchainUserData()
-      }).catch((err) => {
-        if (err.code === 4001) {
-          alert("Something went wrong...Code: 4001 User rejected the request.")
-        } else {
-          console.error(err);
-        }
-      });
-    }
-  }
-
-  claimAllSwapTokens = async () => {
-    let usbSwapLocker
-
-    if (this.state.walletConnect == true) {
-      usbSwapLocker = new window.web3Con.eth.Contract(USBSwapLocker.abi, process.env.REACT_APP_usb_swap_locker_address)
-    } else if (this.state.wallet == true) {
-      usbSwapLocker = new window.web3.eth.Contract(USBSwapLocker.abi, process.env.REACT_APP_usb_swap_locker_address)
-    }
-
-    let arrayToken = []
-    for (let i = 0; i < this.state.stableCoinPoolLength; i++) {
-      if (this.state.unlockedSwapTokens[i] > 0) {
-        arrayToken.push(this.state.usbLiqPoolAddresses[i])
-      }
-    }
-
-    await usbSwapLocker.methods.vestCompletedSchedulesForMultipleTokens(arrayToken).send({ from: this.state.account }).then(async (result) => {
-      this.loadBlockchainUserData()
-    }).catch((err) => {
-      if (err.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        // If this happens, the user rejected the connection request.
-        alert("Something went wrong...Code: 4001 User rejected the request.")
-      } else {
-        console.error(err);
-      }
-    });
-  }
-
-  setConsentTrigger = async (state) => {
-    await this.setState({ consent: state })
-  }
-
-  // state: 0: HOT, 1: TVL, 2: APR
-  sortFarm = async (state) => {
-    let sortItemV2_3 = [...this.state.poolSegmentInfoV2_3]
-    let sortItemUpgradeable = [...this.state.poolSegmentInfoUpgradeable]
-
-    if (state == 0) {
-      sortItemUpgradeable.sort(({ defaultSequence: a }, { defaultSequence: b }) => {
-        let c = parseInt(a, 10) - parseInt(b, 10)
-        return c;
-      });
-      sortItemV2_3.sort(({ defaultSequence: a }, { defaultSequence: b }) => {
-        let c = parseInt(a, 10) - parseInt(b, 10)
-        return c;
-      });
-    } else if (state == 1) {
-      sortItemUpgradeable.sort(({ tvl: a }, { tvl: b }) => {
-        let c = parseInt(b, 10) - parseInt(a, 10)
-        return c;
-      });
-      sortItemV2_3.sort(({ tvl: a }, { tvl: b }) => {
-        let c = parseInt(b, 10) - parseInt(a, 10)
-        return c;
-      });
-    } else if (state == 2) {
-      sortItemUpgradeable.sort(({ totalAPR: a }, { totalAPR: b }) => {
-        let c = parseInt(b, 10) - parseInt(a, 10)
-        return c;
-      });
-      sortItemV2_3.sort(({ totalAPR: a }, { totalAPR: b }) => {
-        let c = parseInt(b, 10) - parseInt(a, 10)
-        return c;
-      });
-    }
-
-    this.setState({ poolSegmentInfoUpgradeable: sortItemUpgradeable })
-    this.setState({ poolSegmentInfoV2_3: sortItemV2_3 })
-  }
-
-
-  setWalletTrigger = async (state) => {
-    if (state == false) {
-      await this.setState({ wallet: state })
-      this.setState({ accountLoading: state })
-    } else {
-      const accounts = await window.web3.eth.getAccounts()
-      this.setState({ account: accounts[0] })
-      const first4Account = this.state.account.substring(0, 4)
-      const last4Account = this.state.account.slice(-4)
-      this.setState({ first4Account: first4Account })
-      this.setState({ last4Account: last4Account })
-      this.setState({ wallet: state })
-    }
-  }
 
   constructor(props) {
     super(props)
@@ -1420,6 +710,11 @@ class App extends Component {
       wallet: false,
       walletConnect: false,
       accountLoading: false,
+      userUSDTBalance: "0",
+      userStakedBalance: "0",
+      userWithdrawableAmount: '0',
+      userEarnedRewardAmount: '0',
+      poolEndOfCurrentEpoch: '0'
 
     }
   }
@@ -1454,22 +749,27 @@ class App extends Component {
       treasuryRewardRemaining={this.state.treasuryRewardRemaining}
       poolBlackoutWindow={this.state.poolBlackoutWindow}
       poolEpochInterval={this.state.poolEpochInterval}
+      poolEndOfCurrentEpoch={this.state.poolEndOfCurrentEpoch}
+
       userUSDTBalance={this.state.userUSDTBalance}
       userStakedBalance={this.state.userStakedBalance}
       userUSDTStakingAllowance={this.state.userUSDTStakingAllowance}
       userEarnedRewardAmount={this.state.userEarnedRewardAmount}
       userWithdrawableAmount={this.state.userWithdrawableAmount}
       userInactiveBalanceNextEpoch={this.state.userInactiveBalanceNextEpoch}
+
+      wallet={this.state.wallet}
+      walletConnect={this.state.walletConnect}
       accountLoading={this.state.accountLoading}
       blockchainLoading={this.state.blockchainLoading}
       connectMetamask={this.connectMetamask}
       mobileWalletConnect={this.mobileWalletConnect}
       connectCoin98={this.connectCoin98}
-      approveStake={this.approveStake}
       stake={this.stake}
-      unstake={this.requestWithdraw}
+      approve={this.approve}
       withdraw={this.withdraw}
-      getReward={this.getReward}
+      requestWithdraw={this.requestWithdraw}
+      claimReward={this.claimReward}
     />
     stakeLiquidityContent = <StakeLiquidity
       poolSize={this.state.poolSize}
@@ -1478,22 +778,27 @@ class App extends Component {
       treasuryRewardRemaining={this.state.treasuryRewardRemaining}
       poolBlackoutWindow={this.state.poolBlackoutWindow}
       poolEpochInterval={this.state.poolEpochInterval}
+      poolEndOfCurrentEpoch={this.state.poolEndOfCurrentEpoch}
+
       userUSDTBalance={this.state.userUSDTBalance}
       userStakedBalance={this.state.userStakedBalance}
       userUSDTStakingAllowance={this.state.userUSDTStakingAllowance}
       userEarnedRewardAmount={this.state.userEarnedRewardAmount}
       userWithdrawableAmount={this.state.userWithdrawableAmount}
       userInactiveBalanceNextEpoch={this.state.userInactiveBalanceNextEpoch}
+
       accountLoading={this.state.accountLoading}
       blockchainLoading={this.state.blockchainLoading}
+      wallet={this.state.wallet}
+      walletConnect={this.state.walletConnect}
       connectMetamask={this.connectMetamask}
       mobileWalletConnect={this.mobileWalletConnect}
       connectCoin98={this.connectCoin98}
-      approveStake={this.approveStake}
       stake={this.stake}
-      unstake={this.requestWithdraw}
+      approve={this.approve}
       withdraw={this.withdraw}
-      getReward={this.getReward}
+      requestWithdraw={this.requestWithdraw}
+      claimReward={this.claimReward}
     />
 
     return (
@@ -1505,7 +810,7 @@ class App extends Component {
               <Route path="/staking/" exact > {navMenuContent} </Route>
               <Route path="/staking/liquidity/" exact > {navMenuContent} </Route>
             </Switch>
-            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px" }}>
+            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '24px', paddingRight: '24px' }}>
               <main role="main" className="content ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
                 <Switch>
                   <Route path="/" exact > {stakeContent} </Route>

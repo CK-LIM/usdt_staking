@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css';
-import baklava from './images/baklava.webp';
 import { Link } from 'react-router-dom';
 import discord from './images/discord.svg'
 import twitter from './images/twitter.svg'
@@ -16,7 +15,7 @@ class Footer extends Component {
                 <div style={{ marginTop: '0px' }}>
                     <br />
                     <div className="rowS center">
-                        <img className="center" src={baklava} width="25" alt="" />&nbsp;&nbsp;
+                        <img className="center" src={medium} width="25" alt="" />&nbsp;&nbsp;
                         <div className="center" style={{ color: "black", fontSize: '16px' }}><b>BAKLAVA.SPACE © 2022</b></div>
                     </div>
                     {/* <div className="center" style={{ color: "black", fontSize: '14px', marginTop: "5px" }}>Tools for defi users.</div> */}
