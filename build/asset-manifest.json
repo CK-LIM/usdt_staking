@@ -1,8 +1,8 @@
 {
   "main.css": "/static/css/main.b7dd18b1.chunk.css",
-  "main.js": "/static/js/main.6326e5df.chunk.js",
+  "main.js": "/static/js/main.fca0f395.chunk.js",
   "static/css/1.620238ce.chunk.css": "/static/css/1.620238ce.chunk.css",
-  "static/js/1.4e1c3104.chunk.js": "/static/js/1.4e1c3104.chunk.js",
+  "static/js/1.b792989a.chunk.js": "/static/js/1.b792989a.chunk.js",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "static/media/usdt.svg": "/static/media/usdt.0b8d2118.svg",
   "static/media/fx.svg": "/static/media/fx.b57cc715.svg",
@@ -18,6 +18,6 @@
   "static/media/github.svg": "/static/media/github.e38195f2.svg",
   "static/media/docs.svg": "/static/media/docs.131690cc.svg",
   "index.html": "/index.html",
-  "precache-manifest.9673513f9203ca3c4fe23777bdb3faf3.js": "/precache-manifest.9673513f9203ca3c4fe23777bdb3faf3.js",
+  "precache-manifest.33065f76367a46ff2b8df773a2e8f74f.js": "/precache-manifest.33065f76367a46ff2b8df773a2e8f74f.js",
   "service-worker.js": "/service-worker.js"
 }
