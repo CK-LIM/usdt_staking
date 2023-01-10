@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import MediaQuery from 'react-responsive';
-import bigInt from 'big-integer'
 import Buttons from 'react-bootstrap/Button'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../App.css';
 import ImgNextGen from '../ImgNextGen';
 import PopupDeposit from './PopupDeposit';
 
-// import nftBackground from '../images/nft-background.svg';
 import nftBackground from '../images/dots-bg.png';
 import usdt from '../images/usdt.svg';
 import fx from '../images/fx.svg';
@@ -50,11 +47,6 @@ function StakeMenu(props) {
                                 <div>
                                     <div className='kXLvz mb-3 mt-3'><b>Welcome to MarginX Staking Program</b></div>
                                     <ButtonGroup>
-                                        {/* <div className='mr-3'>
-                                        <Link to="/staking/liquidity">
-                                            <Buttons className="textWhiteLarge center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Start Earning</Buttons>
-                                        </Link>
-                                    </div> */}
                                         <div>
                                             <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
@@ -180,11 +172,6 @@ function StakeMenu(props) {
                                 <div>
                                     <div className='kXLvz mb-3 mt-3'><b>Welcome to MarginX Staking Program</b></div>
                                     <ButtonGroup>
-                                        {/* <div className='mr-3'>
-                                        <Link to="/staking/liquidity">
-                                            <Buttons className="textWhiteLarge center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Start Earning</Buttons>
-                                        </Link>
-                                    </div> */}
                                         <div>
                                             <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
@@ -306,7 +293,7 @@ function StakeMenu(props) {
             </div>
 
             <div class="lkBtSA" style={{ borderRadius: '20px' }}>
-                <Link to="/staking/liquidity" className='exLink0'>
+                <Link to="/liquidity" className='exLink0'>
                     <div className="card cardbody cell3" style={{ height: '100%', color: 'white', width: '400px' }}>
                         <div className="card-body">
                             <div style={{ marginBottom: "80px" }}>
@@ -315,14 +302,8 @@ function StakeMenu(props) {
                                 <div className="float-right" style={{ marginLeft: "10px" }}>
                                     <ImgNextGen
                                         srcWebp={usdt}
-                                        // className="iconLeft"
                                         width="32px" height="32px" alt=""
                                     />
-                                    {/* <ImgNextGen
-                                            srcWebp={usdt}
-                                            className="iconRight"
-                                            width="27px" height="27px" alt=""
-                                        /> */}
                                 </div>
                             </div>
                             <div>
@@ -403,10 +384,6 @@ function StakeMenu(props) {
                                     props.claimReward()
                                 }} ><div className='linearGradientText center'>Claim</div></Buttons>
                             }
-                            {/* <Buttons className="buttonGradientBorder cell3 center" style={{ width: '80px', height: '40px', marginRight: '10px' }} size="lg" onClick={() => {
-                                props.claimReward()
-                            }} ><div className='linearGradientText center'>Claim</div></Buttons> */}
-
                             <PopupDeposit
                                 userUSDTBalance={props.userUSDTBalance}
                                 userStakedBalance={props.userStakedBalance}

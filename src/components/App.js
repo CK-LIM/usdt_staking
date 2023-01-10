@@ -814,15 +814,13 @@ class App extends Component {
           <div>
             <Switch>
               <Route path="/" exact > {navMenuContent} </Route>
-              <Route path="/staking/" exact > {navMenuContent} </Route>
-              <Route path="/staking/liquidity/" exact > {navMenuContent} </Route>
+              <Route path="/liquidity/" exact > {navMenuContent} </Route>
             </Switch>
             <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '24px', paddingRight: '24px' }}>
               <main role="main" className="content ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
                 <Switch>
                   <Route path="/" exact > {stakeContent} </Route>
-                  <Route path="/staking/" exact > {stakeContent} </Route>
-                  <Route path="/staking/liquidity" exact > {stakeLiquidityContent} </Route>
+                  <Route path="/liquidity" exact > {stakeLiquidityContent} </Route>
                 </Switch>
               </main>
             </div>

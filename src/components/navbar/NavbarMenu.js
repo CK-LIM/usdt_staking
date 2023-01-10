@@ -37,7 +37,7 @@ function NavbMenu(props) {
       <Nav>
         <MediaQuery maxWidth={950}>
           <Menu right className='cell2'>
-            <div className='burgerText'><NavLink className='burgerText' to='/staking/' activeStyle={{ fontWeight: "bold", color: "ffae00" }}>Staking</NavLink></div>
+            <div className='burgerText'><NavLink className='burgerText' to='/' activeStyle={{ fontWeight: "bold", color: "ffae00" }}>Staking</NavLink></div>
             <div className='burgerText'><NavLink className='burgerText' to='/stake/' activeStyle={{ fontWeight: "bold", color: "#ffae00" }}>Forums &#8599;</NavLink></div>
             <div className='burgerText'><NavLink className='burgerText' to='/collateral/' activeStyle={{ fontWeight: "bold", color: "#ffae00" }}>Trade &#8599;</NavLink></div>
           </Menu>
@@ -59,7 +59,8 @@ function NavbMenu(props) {
               <MediaQuery minWidth={951}>
                 <div
                   style={{ marginLeft: "10px", color: "grey" }}
-                ><NavLink className="textSmallBold1" activeClassName="gradient-text" to="/staking/">Staking</NavLink></div>
+                ><NavLink className="textSmallBold1" activeClassName="gradient-text" to="/">Staking</NavLink>
+                </div>
                 <div style={{ marginLeft: "30px" }}>
                   <div className="textSmallBold1" onClick={() => {
                     window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')

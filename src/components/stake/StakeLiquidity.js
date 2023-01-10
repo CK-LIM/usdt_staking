@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import Buttons from 'react-bootstrap/Button'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../App.css';
 
@@ -22,7 +21,7 @@ function StakeLiquidity(props) {
     return (
         <div id="content" style={{ margin: "0", color: '#ff9a04' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Link to="/staking/" className='exLink0'>
+                <Link to="/" className='exLink0'>
                     <div className='backButton center mr-3'>&#8592;</div>
                 </Link>
                 <div style={{ width: '100%' }}>
