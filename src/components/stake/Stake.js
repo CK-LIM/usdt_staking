@@ -35,20 +35,21 @@ function StakeMenu(props) {
 
     return (
         <div id="content" style={{ margin: "0", color: '#ff9a04', maxWidth: "1000px" }}>
-            <MediaQuery minWidth={901}>
+            <MediaQuery minWidth={981}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem', width: '100%' }}>
                     <div className="card cardbody badgebody" style={{ marginBottom: '30px', marginRight: '20px', color: 'white', width: '485px', height: '220px', borderRadius: "25px" }}>
                         <div className="card-body" style={{ marginLeft: "10px", padding: '10px' }}>
                             <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
                                 <ImgNextGen
                                     srcWebp={marginxLogo}
-                                    style={{ marginLeft: '0px', marginRight: '18px' }} width="115" alt=""
+                                    style={{ marginLeft: '0px', marginRight: '18px' }} width="110" alt=""
                                 />
                                 <div>
-                                    <div className='kXLvz mb-3 mt-3'><b>Welcome to MarginX Staking Program</b></div>
+                                    <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
+                                    <div className='kXLvz mb-3'><b>Welcome to Market Maker Liquidity Staking</b></div>
                                     <ButtonGroup>
                                         <div>
-                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
@@ -160,35 +161,48 @@ function StakeMenu(props) {
                 </div>
             </MediaQuery>
 
-            <MediaQuery maxWidth={900}>
-                <div className="card cardbody badgebody" style={{ marginBottom: '30px', color: 'white', height: '220px', minWidth: '350px', maxWidth: '485px', borderRadius: "25px" }}>
+            <MediaQuery maxWidth={980}>
+                <div className="card cardbody badgebody" style={{ marginBottom: '30px', color: 'white', height: '100%', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
                     <div className="card-body" style={{ marginLeft: "10px", padding: '10px' }}>
-                        <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
-                            <ImgNextGen
-                                srcWebp={marginxLogo}
-                                style={{ marginLeft: '0px', marginRight: '18px' }} width="105" alt=""
-                            />
-                            <div>
-                                <MediaQuery minWidth={451}>
-                                    <div className='kXLvz mb-3 mt-3'><b>Welcome to MarginX Staking Program</b></div>
-                                </MediaQuery>
-                                <MediaQuery maxWidth={450}>
-                                    <div className='kXLvz mb-3 mt-3' style={{ fontSize: '24px'}}><b>Welcome to MarginX Staking Program</b></div>
-                                </MediaQuery>
-                                <ButtonGroup>
-                                    <div>
-                                        <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                            window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
-                                        }}>&#8599; Learn more</Buttons>
-                                    </div>
-                                </ButtonGroup>
+                        <MediaQuery minWidth={451}>
+                            <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
+                                <ImgNextGen
+                                    srcWebp={marginxLogo}
+                                    style={{ marginLeft: '0px', marginRight: '18px' }} width="105" alt=""
+                                />
+                                <div>
+                                    <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
+                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>Welcome to Market Maker Liquidity Staking</b></div>
+                                    <ButtonGroup>
+                                        <div>
+                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
+                                            }}>&#8599; Learn more</Buttons>
+                                        </div>
+                                    </ButtonGroup>
+                                </div>
                             </div>
-                        </div>
+                        </MediaQuery>
+                        <MediaQuery maxWidth={450}>
+                            {/* <ImgNextGen
+                                srcWebp={marginxLogo}
+                                style={{ marginLeft: '0px', marginRight: '18px' }} width="85" alt=""
+                            /> */}
+                            <div className='bzThwT mb-2 mt-3' style={{ fontSize: '12px' }}><b>Introducing MarginX</b></div>
+                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>Welcome to Market Maker Liquidity Staking</b></div>
+                            <ButtonGroup>
+                                <div>
+                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
+                                    }}>&#8599; Learn more</Buttons>
+                                </div>
+                            </ButtonGroup>
+                        </MediaQuery>
                     </div>
                 </div>
 
 
-                <div className="mr-auto card cardbody" style={{ marginLeft: '0px', color: 'white', height: '220px', minWidth: '350px', maxWidth: '485px', borderRadius: "25px", backgroundImage: `url(${nftBackground})`, backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+                <div className="mr-auto card cardbody" style={{ marginLeft: '0px', color: 'white', height: '220px', minWidth: '300px', maxWidth: '485px', borderRadius: "25px", backgroundImage: `url(${nftBackground})`, backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                     <div className="card-body" style={{ padding: '15px' }}>
                         <div className="ml-auto mr-auto card cardbodyBlack float-right" style={{ marginBottom: '12px', color: 'white', maxWidth: '400px' }}>
                             <div className="card-body" style={{ padding: '15px' }}>
@@ -298,7 +312,7 @@ function StakeMenu(props) {
 
             <div class="lkBtSA" style={{ borderRadius: '20px' }}>
                 <Link to="/liquidity" className='exLink0'>
-                    <div className="card cardbody cell3" style={{ height: '100%', color: 'white', minWidth: '350px', maxWidth: '400px', }}>
+                    <div className="card cardbody cell3" style={{ height: '100%', color: 'white', minWidth: '300px', maxWidth: '400px', }}>
                         <div className="card-body">
                             <div style={{ marginBottom: "80px" }}>
                                 <div className="float-left textWhite" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -383,8 +397,8 @@ function StakeMenu(props) {
                         </div>
                         <div class="rowC">
                             {props.userEarnedRewardAmount == 0 ?
-                                <Buttons className="buttonGradientBorder cell3 center" style={{ height: '40px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '40px', width: '80px', marginRight: '10px' }} size="lg" onClick={() => {
+                                <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px' }} size="lg" onClick={() => {
                                     props.claimReward()
                                 }} ><div className='linearGradientText center'>Claim</div></Buttons>
                             }
@@ -412,7 +426,7 @@ function StakeMenu(props) {
 
 
 
-            <MediaQuery minWidth={901}>
+            <MediaQuery minWidth={981}>
                 <div className="cCeSgm">
                     <div className="card cardbody" style={{ marginBottom: '12px', height: '180px', color: 'white' }}>
                         <div className="card-body">
@@ -480,8 +494,8 @@ function StakeMenu(props) {
                 </div>
             </MediaQuery>
 
-            <MediaQuery maxWidth={901}>
-                <div className="card cardbody" style={{ marginBottom: '12px', height: '180px', minWidth: '350px', maxWidth: '400px', color: 'white' }}>
+            <MediaQuery maxWidth={980}>
+                <div className="card cardbody" style={{ marginBottom: '12px', height: '180px', minWidth: '300px', maxWidth: '400px', color: 'white' }}>
                     <div className="card-body">
                         <div style={{ marginBottom: "80px" }}>
                             <div className="float-left textBlackLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -508,7 +522,7 @@ function StakeMenu(props) {
                         </div>
                     </div>
                 </div>
-                <div className="mr-auto card cardbody" style={{ marginBottom: '12px', height: '180px', minWidth: '350px', maxWidth: '400px', color: 'white' }}>
+                <div className="mr-auto card cardbody" style={{ marginBottom: '12px', height: '180px', minWidth: '300px', maxWidth: '400px', color: 'white' }}>
                     <div className="card-body">
                         <div style={{ marginBottom: "80px" }}>
                             <div className="float-left textBlackLarge">

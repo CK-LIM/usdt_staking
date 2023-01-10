@@ -146,7 +146,12 @@ function NavbMenu(props) {
               :
               <Popup trigger={open => (
                 <div style={{ margin: '0px', padding: '5px' }}>
-                  <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect Wallet</Buttons>
+                  <MediaQuery minWidth={401}>
+                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect Wallet</Buttons>
+                  </MediaQuery>
+                  <MediaQuery maxWidth={400}>
+                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect</Buttons>
+                  </MediaQuery>
                 </div>)} modal {...{ contentStyle }}>
                 {close => (
                   <div>
