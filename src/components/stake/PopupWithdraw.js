@@ -31,6 +31,12 @@ function PopupWithdraw(props) {
         }
     }
 
+    const setDefault = () => {
+        setMessage('Withdraw funds');
+        setValidAmount('0');
+        setTextInputRef('0');
+    }
+
     const handleClick = (event) => {
         textInput.current.value = event
         if (textInput.current.value == '') {
@@ -52,8 +58,6 @@ function PopupWithdraw(props) {
         var date = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds
         return date
     }
-
-
 
     function checkValue(event) {
         textInput.current.value = (handleDecimalsOnValue(event.target.value));
@@ -77,6 +81,7 @@ function PopupWithdraw(props) {
             <Popup
                 trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Withdraw</Buttons>)}
                 modal {...{ contentStyle }}
+                onClose={setDefault}
             >
                 {close => (
                     <div>
@@ -111,7 +116,7 @@ function PopupWithdraw(props) {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -149,7 +154,7 @@ function PopupWithdraw(props) {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -221,7 +226,7 @@ function PopupWithdraw(props) {
                                     <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons>
                                 }
                                 {(validAmount === "0" || validAmount === "1") &&
-                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.3', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
                                 }
                             </div>
                         </form>

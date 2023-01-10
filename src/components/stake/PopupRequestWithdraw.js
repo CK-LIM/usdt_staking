@@ -29,6 +29,12 @@ function PopupRequestWithdraw(props) {
         }
     }
 
+    const setDefault = () => {
+        setMessage('Request withdraw');
+        setValidAmount('0');
+        setTextInputRef('0');
+    }
+
     const handleClick = (event) => {
         textInput.current.value = event
         if (textInput.current.value == '') {
@@ -73,6 +79,7 @@ function PopupRequestWithdraw(props) {
             <Popup
                 trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Request</Buttons>)}
                 modal {...{ contentStyle }}
+                onClose={setDefault}
             >
                 {close => (
                     <div>
@@ -101,13 +108,13 @@ function PopupRequestWithdraw(props) {
                             <div className="label cell2" style={{ backgroundColor: '#101314', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px", marginBottom: '22px' }}>
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Amount</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Staked: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                                 </div>
 
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -145,7 +152,7 @@ function PopupRequestWithdraw(props) {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -217,7 +224,7 @@ function PopupRequestWithdraw(props) {
                                 <Buttons type="submit" className="greenGradientButton cell2 center" variant="light" >{message}</Buttons>
                             }
                             {(validAmount === "0" || validAmount === "1") &&
-                                <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.3', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
                             }
                         </div>
                         </form>

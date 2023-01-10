@@ -8,7 +8,6 @@ import '../App.css';
 import ImgNextGen from '../ImgNextGen';
 import usdt from '../images/usdt.svg';
 
-import { Link } from 'react-router-dom';
 
 function PopupDeposit(props) {
 
@@ -32,6 +31,12 @@ function PopupDeposit(props) {
             setMessage('Stake funds')
             setValidAmount("3")
         }
+    }
+
+    const setDefault = () => {
+        setMessage('Enter Stake Amount');
+        setValidAmount('0');
+        setTextInputRef('0');
     }
 
     const handleClick = (event) => {
@@ -64,6 +69,7 @@ function PopupDeposit(props) {
             <Popup
                 trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Stake</Buttons>)}
                 modal {...{ contentStyle }}
+                onClose={setDefault}
             >
                 {close => (
                     <div>
@@ -98,7 +104,7 @@ function PopupDeposit(props) {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -136,7 +142,7 @@ function PopupDeposit(props) {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         id="inputColor"
                                         step="any"
                                         min="0"
@@ -167,24 +173,28 @@ function PopupDeposit(props) {
                                 </div >
                             </div>
                         }
-
+                        {/* <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons> */}
                         <form className="mb-1" onSubmit={async (event) => {
                             event.preventDefault()
-                            if (validAmount === "3") {
+                            if (bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) {
                                 let amount = textInput.current.value.toString()
                                 amount = window.web3Eth.utils.toWei(amount, 'mWei')
                                 await props.stake(amount)
                                 close()
-                            } else if (validAmount === "2") {
+                            } else {
                                 await props.approve()
                             }
                         }}>
                             <div>
                                 {(validAmount === "2" || validAmount === "3") &&
-                                    <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons>
+                                    <div>
+                                        <div>{(bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) ?
+                                            <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Stake funds</Buttons>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Approve USDT</Buttons>}</div>
+                                    </div>
                                 }
                                 {(validAmount === "0" || validAmount === "1") &&
-                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.3', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
                                 }
                             </div>
                         </form>

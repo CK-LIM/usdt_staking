@@ -95,7 +95,7 @@ function StakeMenu(props) {
                                         </div>
                                     </div>
                                     {props.userEarnedRewardAmount == 0 ?
-                                        <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.3', }} >Claim</Buttons>
+                                        <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
                                         : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                             props.claimReward()
                                         }}>Claim</Buttons>
@@ -224,9 +224,12 @@ function StakeMenu(props) {
                                         />
                                     </div>
                                 </div>
-                                <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '10px' }} size="lg" onClick={() => {
-                                    props.claimReward()
-                                }}>Claim</Buttons>
+                                {props.userEarnedRewardAmount == 0 ?
+                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        props.claimReward()
+                                    }}>Claim</Buttons>
+                                }
                             </div>
                         </div>
 
@@ -394,9 +397,15 @@ function StakeMenu(props) {
                             </div>
                         </div>
                         <div class="rowC">
-                            <Buttons className="buttonGradientBorder cell3 center" style={{ width: '80px', height: '40px', marginRight: '10px' }} size="lg" onClick={() => {
+                            {props.userEarnedRewardAmount == 0 ?
+                                <Buttons className="buttonGradientBorder cell3 center" style={{ height: '40px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '40px', width: '80px',  marginRight: '10px' }} size="lg" onClick={() => {
+                                    props.claimReward()
+                                }} ><div className='linearGradientText center'>Claim</div></Buttons>
+                            }
+                            {/* <Buttons className="buttonGradientBorder cell3 center" style={{ width: '80px', height: '40px', marginRight: '10px' }} size="lg" onClick={() => {
                                 props.claimReward()
-                            }} ><div className='linearGradientText center'>Claim</div></Buttons>
+                            }} ><div className='linearGradientText center'>Claim</div></Buttons> */}
 
                             <PopupDeposit
                                 userUSDTBalance={props.userUSDTBalance}

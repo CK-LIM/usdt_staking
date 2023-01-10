@@ -37,7 +37,7 @@ function StakeLiquidity(props) {
                                 stake={props.stake}
                                 approve={props.approve}
                             />
-                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.3', }} >Stake</Buttons>
+                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
                         }
                     </div>
                     <div className="" style={{ color: 'grey' }}>Stake and earn rewards for contributing to MarginX exchange liquidity.</div>
@@ -219,14 +219,18 @@ function StakeLiquidity(props) {
                                     </div>
                                     {(props.wallet || props.walletConnect) ?
                                         <div className='iqmhrC'>
-                                            <PopupRequestWithdraw
-                                                poolEndOfCurrentEpoch={props.poolEndOfCurrentEpoch}
-                                                poolSize={props.poolSize}
-                                                userUSDTBalance={props.userUSDTBalance}
-                                                userStakedBalance={props.userStakedBalance}
-                                                userUSDTStakingAllowance={props.userUSDTStakingAllowance}
-                                                requestWithdraw={props.requestWithdraw}
-                                            />
+                                            {props.userActiveBalanceNextEpoch > 0 ?
+                                                <PopupRequestWithdraw
+                                                    poolEndOfCurrentEpoch={props.poolEndOfCurrentEpoch}
+                                                    poolSize={props.poolSize}
+                                                    userUSDTBalance={props.userUSDTBalance}
+                                                    userStakedBalance={props.userStakedBalance}
+                                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
+                                                    userActiveBalanceNextEpoch={props.userActiveBalanceNextEpoch}
+                                                    requestWithdraw={props.requestWithdraw}
+                                                />
+                                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Request</Buttons>
+                                            }
                                         </div> : null
                                     }
                                 </div>
@@ -265,15 +269,18 @@ function StakeLiquidity(props) {
                                     </div>
                                     {(props.wallet || props.walletConnect) ?
                                         <div className='iqmhrC'>
-                                            <PopupWithdraw
-                                                poolEndOfCurrentEpoch={props.poolEndOfCurrentEpoch}
-                                                poolSize={props.poolSize}
-                                                userUSDTBalance={props.userUSDTBalance}
-                                                userStakedBalance={props.userStakedBalance}
-                                                userUSDTStakingAllowance={props.userUSDTStakingAllowance}
-                                                userWithdrawableAmount={props.userWithdrawableAmount}
-                                                withdraw={props.withdraw}
-                                            />
+                                            {props.userWithdrawableAmount > 0 ?
+                                                <PopupWithdraw
+                                                    poolEndOfCurrentEpoch={props.poolEndOfCurrentEpoch}
+                                                    poolSize={props.poolSize}
+                                                    userUSDTBalance={props.userUSDTBalance}
+                                                    userStakedBalance={props.userStakedBalance}
+                                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
+                                                    userWithdrawableAmount={props.userWithdrawableAmount}
+                                                    withdraw={props.withdraw}
+                                                />
+                                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Withdraw</Buttons>
+                                            }
                                         </div> : null
                                     }
                                 </div>

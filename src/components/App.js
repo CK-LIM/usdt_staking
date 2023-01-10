@@ -195,21 +195,21 @@ class App extends Component {
   * ***************************************************************************************************************/
 
   async loadBlockchainUserData() {
-    console.log("123")
     let userResponse0 = this.loadUserUSDTBalance()
     let userResponse1 = this.loadUserStakedBalance()
     let userResponse2 = this.loadUserUSDTStakingAllowance()
     let userResponse3 = this.loadUserEarnedRewardAmount()
     let userResponse4 = this.loadUserWithdrawableAmount()
     let userResponse5 = this.loadUserInactiveBalanceNextEpoch()
+    let userResponse6 = this.loadUserActiveBalanceNextEpoch()
 
     let userUSDTBalance = await userResponse0
     let userStakedBalance = await userResponse1
     let userUSDTStakingAllowance = await userResponse2
     let userEarnedRewardAmount = await userResponse3
-    console.log(userEarnedRewardAmount)
     let userWithdrawableAmount = await userResponse4
     let userInactiveBalanceNextEpoch = await userResponse5
+    let userActiveBalanceNextEpoch = await userResponse6
 
     this.setState({ userUSDTBalance })
     this.setState({ userStakedBalance })
@@ -217,6 +217,7 @@ class App extends Component {
     this.setState({ userEarnedRewardAmount })
     this.setState({ userWithdrawableAmount })
     this.setState({ userInactiveBalanceNextEpoch })
+    this.setState({ userActiveBalanceNextEpoch })
 
     this.setState({ accountLoading: true })
   }
@@ -250,6 +251,11 @@ class App extends Component {
   async loadUserInactiveBalanceNextEpoch() {
     let inactiveBalanceNextEpoch = await this.state.liquidityStakingV1.methods.getInactiveBalanceNextEpoch(this.state.account).call()
     return inactiveBalanceNextEpoch
+  }
+
+  async loadUserActiveBalanceNextEpoch() {
+    let activeBalanceNextEpoch = await this.state.liquidityStakingV1.methods.getActiveBalanceNextEpoch(this.state.account).call()
+    return activeBalanceNextEpoch
   }
 
   // ***********************************************************************************************************************************************
@@ -786,6 +792,7 @@ class App extends Component {
       userEarnedRewardAmount={this.state.userEarnedRewardAmount}
       userWithdrawableAmount={this.state.userWithdrawableAmount}
       userInactiveBalanceNextEpoch={this.state.userInactiveBalanceNextEpoch}
+      userActiveBalanceNextEpoch={this.state.userActiveBalanceNextEpoch}
 
       accountLoading={this.state.accountLoading}
       blockchainLoading={this.state.blockchainLoading}
