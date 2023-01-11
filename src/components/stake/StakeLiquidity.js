@@ -17,7 +17,7 @@ import fx from '../images/fx.svg';
 function StakeLiquidity(props) {
 
     const NOW_IN_MS = new Date().getTime();
-    // const contentStyle = { background: '#1e1f23', border: "0px solid #596169", padding: '20px', width: "380px", borderRadius: "10px", minWidth: "320px" };
+    
     return (
         <div id="content" style={{ margin: "0", color: '#ff9a04' }}>
             <MediaQuery minWidth={1001}>
@@ -27,19 +27,6 @@ function StakeLiquidity(props) {
                     </Link>
                     <div style={{ width: '100%' }}>
                         <label className="textWhite" style={{ marginTop: '25px', fontSize: '22px', color: 'white' }}><big><b>Liquidity Pool</b></big></label>
-
-                        <div className="float-right" style={{ marginTop: '32px', marginRight: '5px' }}>
-                            {(props.wallet || props.walletConnect) ?
-                                <PopupDeposit
-                                    userUSDTBalance={props.userUSDTBalance}
-                                    userStakedBalance={props.userStakedBalance}
-                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
-                                    stake={props.stake}
-                                    approve={props.approve}
-                                />
-                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
-                            }
-                        </div>
                         <div className="" style={{ color: 'grey' }}>Stake and earn rewards for contributing to MarginX exchange liquidity.</div>
                     </div>
                 </div>
@@ -52,18 +39,6 @@ function StakeLiquidity(props) {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div style={{ width: '100%' }}>
                         <label className="textWhite" style={{ marginTop: '5px', fontSize: '22px', color: 'white' }}><big><b>Liquidity Pool</b></big></label>
-                        <div className="float-right" style={{ marginTop: '5px', marginRight: '5px' }}>
-                            {(props.wallet || props.walletConnect) ?
-                                <PopupDeposit
-                                    userUSDTBalance={props.userUSDTBalance}
-                                    userStakedBalance={props.userStakedBalance}
-                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
-                                    stake={props.stake}
-                                    approve={props.approve}
-                                />
-                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
-                            }
-                        </div>
                         <div className="" style={{ color: 'grey' }}>Stake and earn rewards for contributing to MarginX exchange liquidity.</div>
                     </div>
                 </div>
@@ -74,7 +49,7 @@ function StakeLiquidity(props) {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '32px' }}>
                     <div style={{ flex: '0 0 34rem', display: 'flex', flexDirection: 'column', width: 'calc(50% - 1rem)' }}>
                         <div className="blackBox">
-                            <div className="ml-auto mr-auto card cardbody mr-2" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
+                            <div className="card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '265px', color: 'white' }}>
                                 <div className="card-body">
                                     <div style={{ marginBottom: "65px" }}>
                                         <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -107,7 +82,7 @@ function StakeLiquidity(props) {
 
                                 </div>
                             </div>
-                            <div className="ml-auto mr-auto card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
+                            <div className="card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '265px', color: 'white' }}>
                                 <div className="card-body">
                                     <div style={{ marginBottom: "65px" }}>
                                         <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -142,78 +117,111 @@ function StakeLiquidity(props) {
 
 
                         <div className="blackBox">
-                            <div className="ml-auto mr-auto card cardbody mr-2" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
-                                <div className="card-body">
-                                    <div style={{ marginBottom: "65px" }}>
-                                        <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
-                                            Staked</div>
-                                    </div>
-                                    <table>
-                                        <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
-                                            <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120">
-                                                    {props.accountLoading ?
-                                                        <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                            <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mWei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-                                                            <div className="JYkOF">
-                                                                <ImgNextGen
-                                                                    srcWebp={usdt}
-                                                                    style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
-                                                                />
+                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                                <div className="ml-auto mr-auto card cardbody mr-2" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
+                                    <div className="card-body">
+                                        <div style={{ marginBottom: "65px" }}>
+                                            <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
+                                                Staked</div>
+                                        </div>
+                                        <table>
+                                            <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
+                                                <tr>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120">
+                                                        {props.accountLoading ?
+                                                            <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                                <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mWei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                                                <div className="JYkOF">
+                                                                    <ImgNextGen
+                                                                        srcWebp={usdt}
+                                                                        style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        : <div>-</div>}</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="textBlackSmall" style={{ color: 'white' }}>
-                                            <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                            : <div>-</div>}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="textBlackSmall" style={{ color: 'white' }}>
+                                                <tr>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+                                {
+                                    (props.wallet || props.walletConnect) ?
+                                        <div className='iqmhrC'>
+                                            {props.userActiveBalanceNextEpoch > 0 ?
+                                                <PopupDeposit
+                                                    userUSDTBalance={props.userUSDTBalance}
+                                                    userStakedBalance={props.userStakedBalance}
+                                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
+                                                    stake={props.stake}
+                                                    approve={props.approve}
+                                                />
+                                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
+                                            }
+                                        </div> : null
+                                }
                             </div>
-                            <div className="ml-auto mr-auto card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
-                                <div className="card-body">
-                                    <div style={{ marginBottom: "65px" }}>
-                                        <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
-                                            Earned</div>
-                                    </div>
-                                    <table>
-                                        <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
-                                            <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120">
-                                                    {props.accountLoading ?
-                                                        <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                            <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
-                                                            <div className="JYkOF">
-                                                                <ImgNextGen
-                                                                    srcWebp={fx}
-                                                                    style={{ marginLeft: '6px', marginRight: '0px' }} width="25px" alt=""
-                                                                />
+
+                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                                <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
+                                    <div className="card-body">
+                                        <div style={{ marginBottom: "65px" }}>
+                                            <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
+                                                Earned</div>
+                                        </div>
+                                        <table>
+                                            <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
+                                                <tr>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120">
+                                                        {props.accountLoading ?
+                                                            <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                                <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
+                                                                <div className="JYkOF">
+                                                                    <ImgNextGen
+                                                                        srcWebp={fx}
+                                                                        style={{ marginLeft: '6px', marginRight: '0px' }} width="25px" alt=""
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        : <div>-</div>}</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="textBlackSmall" style={{ color: 'white' }}>
-                                            <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120"> Stake to earn rewards</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                            : <div>-</div>}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="textBlackSmall" style={{ color: 'white' }}>
+                                                <tr>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> Stake to earn rewards</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
+                                {(props.wallet || props.walletConnect) ?
+                                    <div className='iqmhrC'>
+                                        {props.userEarnedRewardAmount == 0 ?
+                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                props.claimReward()
+                                            }}>Claim</Buttons>
+                                        }
+                                    </div> : null
+                                }
+
                             </div>
                         </div>
 
 
+
                         <div style={{ marginTop: '2.5rem', display: 'block' }}>
-                            <label className="textWhite mb-3" style={{ marginTop: '20px', fontSize: '30px', color: 'white' }}><big><b>Withdraws</b></big></label>
+                            <label className="textWhite" style={{ marginTop: '5px', fontSize: '22px', color: 'white' }}><big><b>Withdraws</b></big></label>
                             <div className="mb-4" style={{ color: 'grey' }}>View and manage your pending and available withdraws.</div>
                             <div style={{ marginTop: '1.5rem', display: 'block' }}>
                                 <div className="blackBox">
-                                    <div class="lkBtSA ml-auto mr-auto" style={{ borderRadius: '20px', marginBottom: '20px' }}>
-                                        <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '260px', color: 'white' }}>
+                                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                                        <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                             <div className="card-body">
                                                 <div style={{ marginBottom: "65px" }}>
                                                     <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -262,8 +270,8 @@ function StakeLiquidity(props) {
                                         }
                                     </div>
 
-                                    <div class="lkBtSA ml-auto mr-auto" style={{ borderRadius: '20px', marginBottom: '20px' }}>
-                                        <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '260px', color: 'white' }}>
+                                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                                        <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                             <div className="card-body">
                                                 <div style={{ marginBottom: "65px" }}>
                                                     <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -312,8 +320,9 @@ function StakeLiquidity(props) {
                                         }
                                     </div>
                                 </div>
+
                                 <div className="blackBox">
-                                    <div className="ml-auto mr-auto card cardbody mr-2" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
+                                    <div className="card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '265px', color: 'white' }}>
                                         <div className="card-body">
                                             <div style={{ marginBottom: "65px" }}>
                                                 <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -338,7 +347,7 @@ function StakeLiquidity(props) {
                                             </table>
                                         </div>
                                     </div>
-                                    <div className="ml-auto mr-auto card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '260px', color: 'white' }}>
+                                    <div className="card cardbody" style={{ marginBottom: '12px', height: '160px', maxWidth: '265px', color: 'white' }}>
                                         <div className="card-body">
                                             <div style={{ marginBottom: "65px" }}>
                                                 <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
@@ -369,8 +378,14 @@ function StakeLiquidity(props) {
                     </div>
 
 
+
+
+
+
+
+
                     <MediaQuery minWidth={1001}>
-                        <div className="mr-auto card cardbody" style={{ marginLeft: '10px', marginBottom: '12px', height: '100%', color: 'white', width: 'calc(50% - 1rem)' }}>
+                        <div className="mr-auto card cardbody" style={{ marginLeft: '15px', marginBottom: '12px', height: '100%', color: 'white', width: 'calc(50% - 1rem)' }}>
                             <div className="card-body">
                                 <div style={{ paddingBottom: '10px' }}>
                                     <div className="textBlackSmall" style={{ color: 'white', marginBottom: '10px' }}>
@@ -431,8 +446,6 @@ function StakeLiquidity(props) {
 
             <MediaQuery maxWidth={600}>
                 <div style={{ justifyContent: 'space-between', marginTop: '32px' }}>
-                    {/* <div style={{ flex: '0 0 34rem', display: 'flex', flexDirection: 'column', width: 'calc(50% - 1rem)' }}> */}
-                    {/* <div className="blackBox"> */}
                     <div className="ml-auto mr-auto card cardbody" style={{ marginBottom: '12px', height: '160px', width: '100%', color: 'white' }}>
                         <div className="card-body">
                             <div style={{ marginBottom: "65px" }}>
@@ -497,81 +510,105 @@ function StakeLiquidity(props) {
                             </table>
                         </div>
                     </div>
-                    {/* </div> */}
 
-
-                    {/* <div className="blackBox"> */}
-                    <div className="ml-auto mr-auto card cardbody mr-2" style={{ marginBottom: '12px', height: '160px', width: '100%', color: 'white' }}>
-                        <div className="card-body">
-                            <div style={{ marginBottom: "65px" }}>
-                                <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
-                                    Staked</div>
-                            </div>
-                            <table>
-                                <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
-                                    <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">
-                                            {props.accountLoading ?
-                                                <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mWei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-                                                    <div className="JYkOF">
-                                                        <ImgNextGen
-                                                            srcWebp={usdt}
-                                                            style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
-                                                        />
+                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                        <div className="ml-auto mr-auto card cardbody mr-2" style={{ height: '160px', width: '100%', color: 'white' }}>
+                            <div className="card-body">
+                                <div style={{ marginBottom: "65px" }}>
+                                    <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
+                                        Staked</div>
+                                </div>
+                                <table>
+                                    <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
+                                        <tr>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120">
+                                                {props.accountLoading ?
+                                                    <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mWei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                                        <div className="JYkOF">
+                                                            <ImgNextGen
+                                                                srcWebp={usdt}
+                                                                style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                : <div>-</div>}</td>
-                                    </tr>
-                                </thead>
-                                <tbody className="textBlackSmall" style={{ color: 'white' }}>
-                                    <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div className="ml-auto mr-auto card cardbody" style={{ marginBottom: '12px', height: '160px', width: '100%', color: 'white' }}>
-                        <div className="card-body">
-                            <div style={{ marginBottom: "65px" }}>
-                                <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
-                                    Earned</div>
+                                                    : <div>-</div>}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="textBlackSmall" style={{ color: 'white' }}>
+                                        <tr>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <table>
-                                <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
-                                    <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">
-                                            {props.accountLoading ?
-                                                <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
-                                                    <div className="JYkOF">
-                                                        <ImgNextGen
-                                                            srcWebp={fx}
-                                                            style={{ marginLeft: '6px', marginRight: '0px' }} width="25px" alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                : <div>-</div>}</td>
-                                    </tr>
-                                </thead>
-                                <tbody className="textBlackSmall" style={{ color: 'white' }}>
-                                    <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120"> Stake to earn rewards</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
+                        {
+                            (props.wallet || props.walletConnect) ?
+                                <div className='iqmhrC'>
+                                    {props.userActiveBalanceNextEpoch > 0 ?
+                                        <PopupDeposit
+                                            userUSDTBalance={props.userUSDTBalance}
+                                            userStakedBalance={props.userStakedBalance}
+                                            userUSDTStakingAllowance={props.userUSDTStakingAllowance}
+                                            stake={props.stake}
+                                            approve={props.approve}
+                                        />
+                                        : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
+                                    }
+                                </div> : null
+                        }
                     </div>
-                    {/* </div> */}
+                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                        <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
+                            <div className="card-body">
+                                <div style={{ marginBottom: "65px" }}>
+                                    <div className="float-left textWhiteLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
+                                        Earned</div>
+                                </div>
+                                <table>
+                                    <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
+                                        <tr>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120">
+                                                {props.accountLoading ?
+                                                    <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
+                                                        <div className="JYkOF">
+                                                            <ImgNextGen
+                                                                srcWebp={fx}
+                                                                style={{ marginLeft: '6px', marginRight: '0px' }} width="25px" alt=""
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    : <div>-</div>}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="textBlackSmall" style={{ color: 'white' }}>
+                                        <tr>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120"> Stake to earn rewards</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {(props.wallet || props.walletConnect) ?
+                            <div className='iqmhrC'>
+                                {props.userEarnedRewardAmount == 0 ?
+                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        props.claimReward()
+                                    }}>Claim</Buttons>
+                                }
+                            </div> : null
+                        }
+                    </div>
 
 
                     <div style={{ marginTop: '2.5rem', display: 'block' }}>
-                        <label className="textWhite mb-3" style={{ marginTop: '20px', fontSize: '30px', color: 'white' }}><big><b>Withdraws</b></big></label>
+                        <label className="textWhite" style={{ marginTop: '5px', fontSize: '22px', color: 'white' }}><big><b>Withdraws</b></big></label>
                         <div className="mb-4" style={{ color: 'grey' }}>View and manage your pending and available withdraws.</div>
                         <div style={{ marginTop: '1.5rem', display: 'block' }}>
-                            {/* <div className="blackBox"> */}
-                            <div class="lkBtSA ml-auto mr-auto" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                 <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -621,7 +658,7 @@ function StakeLiquidity(props) {
                                 }
                             </div>
 
-                            <div class="lkBtSA ml-auto mr-auto" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                 <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -670,9 +707,7 @@ function StakeLiquidity(props) {
                                     </div> : null
                                 }
                             </div>
-                            {/* </div> */}
 
-                            {/* <div className="blackBox"> */}
                             <div className="ml-auto mr-auto card cardbody mr-2" style={{ marginBottom: '12px', height: '160px', width: '100%', color: 'white' }}>
                                 <div className="card-body">
                                     <div style={{ marginBottom: "65px" }}>
