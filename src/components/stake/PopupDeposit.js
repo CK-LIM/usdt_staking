@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import MediaQuery from 'react-responsive';
+import React, { useState, useRef } from 'react'
 import bigInt from 'big-integer'
 import Buttons from 'react-bootstrap/Button'
 import Popup from 'reactjs-popup';
@@ -12,7 +11,8 @@ import usdt from '../images/usdt.svg';
 function PopupDeposit(props) {
 
     const [message, setMessage] = useState("Enter Stake Amount");
-    const [validAmount, setValidAmount] = useState("0");
+    const [validAmount, setValidAmount] = useState(false);
+    const [txLoading, setTxLoading] = useState(false);
     const [textInputRef, setTextInputRef] = useState("0");
     const textInput = useRef(null);
 
@@ -20,23 +20,24 @@ function PopupDeposit(props) {
         let result = !isNaN(+event); // true if its a number, false if not
         if (event == "") {
             setMessage('Enter Stake Amount')
-            setValidAmount("0")
+            setValidAmount(false)
+        } else if (parseInt(event) == 0) {
+            setMessage('Enter Stake Amount')
+            setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userUSDTBalance).value) {
             setMessage('Insufficient Balance')
-            setValidAmount("1")
-        } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userUSDTStakingAllowance).value) {
-            setMessage('Approve USDT')
-            setValidAmount("2")
+            setValidAmount(false)
         } else {
-            setMessage('Stake funds')
-            setValidAmount("3")
+            setMessage('Enter Stake Amount')
+            setValidAmount(true)
         }
     }
 
     const setDefault = () => {
         setMessage('Enter Stake Amount');
-        setValidAmount('0');
+        setValidAmount(false);
         setTextInputRef('0');
+        setTxLoading(false);
     }
 
     const handleClick = (event) => {
@@ -67,7 +68,7 @@ function PopupDeposit(props) {
     return (
         <div id="content">
             <Popup
-                trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Stake</Buttons>)}
+                trigger={open => (<Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Stake</Buttons>)}
                 modal {...{ contentStyle }}
                 onClose={setDefault}
             >
@@ -173,28 +174,36 @@ function PopupDeposit(props) {
                                 </div >
                             </div>
                         }
-                        {/* <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons> */}
+
                         <form className="mb-1" onSubmit={async (event) => {
                             event.preventDefault()
-                            if (bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) {
-                                let amount = textInput.current.value.toString()
-                                amount = window.web3Eth.utils.toWei(amount, 'mWei')
-                                await props.stake(amount)
-                                close()
-                            } else {
-                                await props.approve()
+                            if (validAmount === true) {
+                                if (bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) {
+                                    let amount = textInput.current.value.toString()
+                                    amount = window.web3Eth.utils.toWei(amount, 'mWei')
+                                    setTxLoading(true)
+                                    await props.stake(amount)
+                                    close()
+                                } else {
+                                    setTxLoading(true)
+                                    await props.approve()
+                                    setTxLoading(false)
+                                }
                             }
                         }}>
                             <div>
-                                {(validAmount === "2" || validAmount === "3") &&
+                                {(validAmount === true) &&
                                     <div>
-                                        <div>{(bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) ?
-                                            <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Stake funds</Buttons>
-                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Approve USDT</Buttons>}</div>
+                                        {txLoading == false ?
+                                            <div>{(bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) ?
+                                                <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Stake funds</Buttons>
+                                                : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Approve USDT</Buttons>}</div>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
+                                        }
                                     </div>
                                 }
-                                {(validAmount === "0" || validAmount === "1") &&
-                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                {(validAmount === false) &&
+                                    <Buttons type="submit" className="textWhiteLargeButton cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
                                 }
                             </div>
                         </form>

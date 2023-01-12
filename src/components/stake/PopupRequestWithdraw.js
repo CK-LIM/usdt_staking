@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import bigInt from 'big-integer'
 import Buttons from 'react-bootstrap/Button'
 import Popup from 'reactjs-popup';
@@ -11,28 +11,36 @@ import usdt from '../images/usdt.svg';
 function PopupRequestWithdraw(props) {
 
     const [message, setMessage] = useState("Request withdraw");
-    const [validAmount, setValidAmount] = useState("0");
+    const [validAmount, setValidAmount] = useState(false);
     const [textInputRef, setTextInputRef] = useState("0");
+    const [txLoading, setTxLoading] = useState(false);
     const textInput = useRef(null);
 
     const changeHandler = (event) => {
         let result = !isNaN(+event); // true if its a number, false if not
         if (event == "") {
             setMessage('Request withdraw')
-            setValidAmount("0")
-        } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userStakedBalance).value) {
+            setValidAmount(false)
+        }  else if (parseInt(event) == 0) {
+            setMessage('Request withdraw')
+            setValidAmount(false)
+        }  else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userStakedBalance).value) {
             setMessage('Insufficient Staked Amount')
-            setValidAmount("1")
+            setValidAmount(false)
+        } else if (parseInt(props.poolTimeRemainingInCurrentEpoch) <= parseInt(props.poolBlackoutWindow)) {
+            setMessage('In Blackout Window')
+            setValidAmount(false)
         } else {
             setMessage('Request withdraw')
-            setValidAmount("2")
+            setValidAmount(true)
         }
     }
 
     const setDefault = () => {
         setMessage('Request withdraw');
-        setValidAmount('0');
+        setValidAmount(false);
         setTextInputRef('0');
+        setTxLoading(false);
     }
 
     const handleClick = (event) => {
@@ -77,7 +85,7 @@ function PopupRequestWithdraw(props) {
     return (
         <div id="content">
             <Popup
-                trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Request</Buttons>)}
+                trigger={open => (<Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Request</Buttons>)}
                 modal {...{ contentStyle }}
                 onClose={setDefault}
             >
@@ -108,7 +116,7 @@ function PopupRequestWithdraw(props) {
                             <div className="label cell2" style={{ backgroundColor: '#101314', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px", marginBottom: '22px' }}>
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Amount</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Deposited: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                                 </div>
 
                                 <div className="input-group">
@@ -146,7 +154,7 @@ function PopupRequestWithdraw(props) {
                             <div className="cell2" style={{ backgroundColor: '#101314', border: '1px solid red', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px", marginBottom: '22px' }}>
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Amount</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Deposited: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                                 </div>
 
                                 <div className="input-group">
@@ -186,47 +194,52 @@ function PopupRequestWithdraw(props) {
 
                         <form className="mb-1" onSubmit={async (event) => {
                             event.preventDefault()
-                            if (validAmount === "2") {
+                            if (validAmount === true) {
                                 let amount = textInput.current.value.toString()
                                 amount = window.web3Eth.utils.toWei(amount, 'mWei')
+                                setTxLoading(true)
                                 await props.requestWithdraw(amount)
                                 close()
                             }
                         }}>
-                        <div class="lkBtSA" style={{ borderRadius: '20px', width: '100%' }}>
-
-                            <div className='iqmhrB'>
-                                <div class="OYMUv">
-                                    <table>
-                                        <thead className="iddTJz" style={{ color: 'white' }}>
-                                            <tr>
-                                                <td className="iddTJz" style={{ textAlign: "start" }} scope="col" width="">
-                                                    Your Pool Share
-                                                </td>
-                                                <td className="iddTJz" style={{ textAlign: "end" }} scope="col" width="">
-                                                    {props.userStakedBalance / props.poolSize * 100} %
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="iddTJz" style={{ textAlign: "start" }} scope="col" width="">
-                                                    Available at
-                                                </td>
-                                                <td className="iddTJz" style={{ textAlign: "end" }} scope="col" width="">
-                                                    {convertTimeStamp(props.poolEndOfCurrentEpoch)}
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                    </table>
+                            <div class="lkBtSA" style={{ borderRadius: '20px', width: '100%' }}>
+                                <div className='iqmhrB'>
+                                    <div class="OYMUv">
+                                        <table>
+                                            <thead className="iddTJz" style={{ color: 'white' }}>
+                                                <tr>
+                                                    <td className="iddTJz" style={{ textAlign: "start" }} scope="col" width="">
+                                                        Your Pool Share
+                                                    </td>
+                                                    <td className="iddTJz" style={{ textAlign: "end" }} scope="col" width="">
+                                                        {props.userStakedBalance / props.poolSize * 100} %
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="iddTJz" style={{ textAlign: "start" }} scope="col" width="">
+                                                        Available at
+                                                    </td>
+                                                    <td className="iddTJz" style={{ textAlign: "end" }} scope="col" width="">
+                                                        {convertTimeStamp(props.poolEndOfCurrentEpoch)}
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {(validAmount === "2" || validAmount === "3") &&
-                                <Buttons type="submit" className="greenGradientButton cell2 center" variant="light" >{message}</Buttons>
-                            }
-                            {(validAmount === "0" || validAmount === "1") &&
-                                <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
-                            }
-                        </div>
+                                {(validAmount === true) &&
+                                    <div>
+                                        {txLoading == false ?
+                                            <Buttons type="submit" className="greenGradientButton cell2 center" variant="light" >{message}</Buttons>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
+                                        }
+                                    </div>
+                                }
+                                {(validAmount === false) &&
+                                    <Buttons type="submit" className="textWhiteLargeButton cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                }
+                            </div>
                         </form>
                     </div>
                 )}

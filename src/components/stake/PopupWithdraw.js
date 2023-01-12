@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import MediaQuery from 'react-responsive';
+import React, { useState, useRef } from 'react'
 import bigInt from 'big-integer'
 import Buttons from 'react-bootstrap/Button'
 import Popup from 'reactjs-popup';
@@ -8,33 +7,36 @@ import '../App.css';
 import ImgNextGen from '../ImgNextGen';
 import usdt from '../images/usdt.svg';
 
-import { Link } from 'react-router-dom';
-
 function PopupWithdraw(props) {
 
     const [message, setMessage] = useState("Withdraw funds");
-    const [validAmount, setValidAmount] = useState("0");
+    const [validAmount, setValidAmount] = useState(false);
     const [textInputRef, setTextInputRef] = useState("0");
+    const [txLoading, setTxLoading] = useState(false);
     const textInput = useRef(null);
 
     const changeHandler = (event) => {
         let result = !isNaN(+event); // true if its a number, false if not
         if (event == "") {
             setMessage('Withdraw funds')
-            setValidAmount("0")
+            setValidAmount(false)
+        }  else if (parseInt(event) == 0) {
+            setMessage('Withdraw funds')
+            setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userWithdrawableAmount).value) {
             setMessage('More than withdrawable Amount')
-            setValidAmount("1")
+            setValidAmount(false)
         } else {
             setMessage('Withdraw funds')
-            setValidAmount("2")
+            setValidAmount(true)
         }
     }
 
     const setDefault = () => {
         setMessage('Withdraw funds');
-        setValidAmount('0');
+        setValidAmount(false);
         setTextInputRef('0');
+        setTxLoading(false);
     }
 
     const handleClick = (event) => {
@@ -75,11 +77,11 @@ function PopupWithdraw(props) {
 
 
     const contentStyle = { background: '#1e1f23', border: "0px solid #596169", padding: '20px', width: "380px", borderRadius: "15px", minWidth: "320px" };
-    
+
     return (
         <div id="content">
             <Popup
-                trigger={open => (<Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Withdraw</Buttons>)}
+                trigger={open => (<Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Withdraw</Buttons>)}
                 modal {...{ contentStyle }}
                 onClose={setDefault}
             >
@@ -188,9 +190,10 @@ function PopupWithdraw(props) {
 
                         <form className="mb-1" onSubmit={async (event) => {
                             event.preventDefault()
-                            if (validAmount === "2") {
+                            if (validAmount === true) {
                                 let amount = textInput.current.value.toString()
                                 amount = window.web3Eth.utils.toWei(amount, 'mWei')
+                                setTxLoading(true)
                                 await props.withdraw(amount)
                                 close()
                             }
@@ -222,11 +225,16 @@ function PopupWithdraw(props) {
                                     </div>
                                 </div>
 
-                                {(validAmount === "2" || validAmount === "3") &&
-                                    <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons>
+                                {(validAmount === true) &&
+                                    <div>
+                                        {txLoading == false ?
+                                            <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
+                                        }
+                                    </div>
                                 }
-                                {(validAmount === "0" || validAmount === "1") &&
-                                    <Buttons type="submit" className="textWhiteLarge cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
+                                {(validAmount === false) &&
+                                    <Buttons type="submit" className="textWhiteLargeButton cell2 center" variant="light" style={{ height: '40px', width: '100%', color: 'black', padding: "5px 16px", cursor: 'not-allowed', opacity: '0.5', border: '0px', backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} >{message}</Buttons>
                                 }
                             </div>
                         </form>

@@ -19,43 +19,20 @@ class App extends Component {
 
   async componentWillMount() {
     await this.loadWeb3()
-    await this.loadFarmData()
     await this.loadBlockchainData()
-    while (this.state.wallet == false || this.state.walletConnect == false) {
+    // while (this.state.wallet == false || this.state.walletConnect == false) {
+    while (this.state.wallet == false || this.state.wallet == true) {
       if ((this.state.wallet || this.state.walletConnect) == true) {
+        await this.delay(20000);
+        await this.loadBlockchainData()
         await this.loadBlockchainUserData()
+      } else {
+        await this.delay(20000);
+        await this.loadBlockchainData()
       }
-      await this.delay(10000);
     }
   }
 
-  async loadFarmData() {
-
-    // let responseMongo = this.loadMongo()
-    // let responseGecko = this.loadGecko()
-
-    // const myJsonMongo = await responseMongo
-    // const myJsonGecko = await responseGecko
-    // this.setState({ myJsonMongo })
-
-    // let AVAXPrice = myJsonGecko["wrapped-avax"]["usd"]
-    // let BAVAPrice = myJsonGecko["baklava"]["usd"]
-    // let PNGPrice = myJsonGecko["pangolin"]["usd"]
-    // let JOEPrice = myJsonGecko["joe"]["usd"]
-    // let QIPrice = myJsonGecko["benqi"]["usd"]
-
-    // this.setState({ AVAXPrice: AVAXPrice.toFixed(5) })
-    // this.setState({ BAVAPrice: BAVAPrice.toFixed(5) })
-    // this.setState({ PNGPrice: PNGPrice.toFixed(5) })
-    // this.setState({ JOEPrice: JOEPrice.toFixed(5) })
-    // this.setState({ QIPrice: QIPrice.toFixed(5) })
-  }
-
-  // async loadMongo() {
-  //   let responseMongo = await fetch(`https://ap-southeast-1.aws.data.mongodb-api.com/app/bdl-uyejj/endpoint/tvl`);
-  //   const mongoDB = await responseMongo.json();
-  //   return mongoDB
-  // }
 
   // async loadGecko() {
   //   let responseGecko = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=joe%2Cwrapped-avax%2Cpangolin%2Cweth%2Cbaklava%2Cusd-coin%2Ctether%2Cbenqi%2Cterra-luna&vs_currencies=usd`);
@@ -68,8 +45,6 @@ class App extends Component {
     const web3Eth = window.web3Eth
     const networkId = process.env.REACT_APP_networkid
     this.setState({ networkId })
-    const farmNetworkId = process.env.REACT_APP_farmnetworkid
-    this.setState({ farmNetworkId })
     const farmNetwork = process.env.REACT_APP_farmnetwork
     this.setState({ farmNetwork })
 
@@ -122,26 +97,32 @@ class App extends Component {
     let response1 = this.loadPoolRewardRate()
     let response2 = this.loadPoolTimeRemainingInCurrentEpoch()
     let response3 = this.loadTreasuryRewardAmount()
-    let response4 = this.loadPoolBlackoutWindow()
+    let response4 = this.loadTimeRemainingNextBlackout()
     let response5 = this.loadPoolEpochParam()
     let response6 = this.loadPoolStartOfCurrentEpoch()
+    let response7 = this.loadBlackoutWindow()
 
     let poolSize = await response0
     let poolRewardRate = await response1
     let poolTimeRemainingInCurrentEpoch = await response2
     let treasuryRewardRemaining = await response3
-    let poolBlackoutWindow = await response4
+    let timeRemainingNextBlackout = await response4
     let poolEpochInterval = await response5
     let poolStartOfCurrentEpoch = await response6
+    let poolBlackoutWindow = await response7
+
     let poolEndOfCurrentEpoch = parseInt(poolStartOfCurrentEpoch) + parseInt(poolEpochInterval)
 
     this.setState({ poolSize })
     this.setState({ poolRewardRate })
     this.setState({ poolTimeRemainingInCurrentEpoch })
     this.setState({ treasuryRewardRemaining })
-    this.setState({ poolBlackoutWindow })
+    this.setState({ timeRemainingNextBlackout })
     this.setState({ poolEpochInterval })
     this.setState({ poolEndOfCurrentEpoch })
+    this.setState({ poolBlackoutWindow })
+    console.log(poolTimeRemainingInCurrentEpoch)
+    console.log(poolBlackoutWindow)
 
     this.setState({ blockchainLoading: true })
   }
@@ -167,7 +148,7 @@ class App extends Component {
     return treasuryRemainingAmount
   }
 
-  async loadPoolBlackoutWindow() {
+  async loadTimeRemainingNextBlackout() {
     let timeRemainingNextBlackout = 0
     let blackoutWindow = await this.state.liquidityStakingV1.methods.getBlackoutWindow().call()
     let poolTimeRemainingInCurrentEpoch = await this.state.liquidityStakingV1.methods.getTimeRemainingInCurrentEpoch().call()
@@ -188,6 +169,11 @@ class App extends Component {
     let currentEpochNum = await this.state.liquidityStakingV1.methods.getCurrentEpoch().call()
     let startOfCurrentRpoch = await this.state.liquidityStakingV1.methods.getStartOfEpoch(currentEpochNum).call()
     return startOfCurrentRpoch
+  }
+
+  async loadBlackoutWindow() {
+    let blackoutWindow = await this.state.liquidityStakingV1.methods.getBlackoutWindow().call()
+    return blackoutWindow
   }
 
   /* **************************************************************************************************************
@@ -263,7 +249,7 @@ class App extends Component {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
     }
-    window.web3Eth = new Web3(`https://eth-goerli.g.alchemy.com/v2/oVlBkzgZrAVhL6zvDAB73MtQK7EiiRhH`);
+    window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/oVlBkzgZrAVhL6zvDAB73MtQK7EiiRhH`);
     try {
       let id = await window.web3Eth.eth.net.isListening()
     } catch (e) {
@@ -277,8 +263,8 @@ class App extends Component {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
     }
-    window.web3Eth = new Web3(`https://rpc.ankr.com/eth_goerli`);
-    // window.web3Eth = new Web3(`http://mainnet-useast1-avax-dataseed1.functionx.io:9650/ext/bc/C/rpc`);
+    // window.web3Eth = new Web3(`https://rpc.ankr.com/eth_goerli`);
+    window.web3Eth = new Web3(`https://rpc.ankr.com/eth`);
 
     this.setState({ loading: true })
   }
@@ -604,7 +590,7 @@ class App extends Component {
         console.error(err);
       }
     });
-    
+
   }
 
   approve = async () => {
@@ -720,7 +706,8 @@ class App extends Component {
       userStakedBalance: "0",
       userWithdrawableAmount: '0',
       userEarnedRewardAmount: '0',
-      poolEndOfCurrentEpoch: '0'
+      poolEndOfCurrentEpoch: '0',
+      poolBlackoutWindow: '150'
 
     }
   }
@@ -753,9 +740,10 @@ class App extends Component {
       poolRewardRate={this.state.poolRewardRate}
       poolTimeRemainingInCurrentEpoch={this.state.poolTimeRemainingInCurrentEpoch}
       treasuryRewardRemaining={this.state.treasuryRewardRemaining}
-      poolBlackoutWindow={this.state.poolBlackoutWindow}
+      timeRemainingNextBlackout={this.state.timeRemainingNextBlackout}
       poolEpochInterval={this.state.poolEpochInterval}
       poolEndOfCurrentEpoch={this.state.poolEndOfCurrentEpoch}
+      poolBlackoutWindow={this.state.poolBlackoutWindow}
 
       userUSDTBalance={this.state.userUSDTBalance}
       userStakedBalance={this.state.userStakedBalance}
@@ -782,9 +770,10 @@ class App extends Component {
       poolRewardRate={this.state.poolRewardRate}
       poolTimeRemainingInCurrentEpoch={this.state.poolTimeRemainingInCurrentEpoch}
       treasuryRewardRemaining={this.state.treasuryRewardRemaining}
-      poolBlackoutWindow={this.state.poolBlackoutWindow}
+      timeRemainingNextBlackout={this.state.timeRemainingNextBlackout}
       poolEpochInterval={this.state.poolEpochInterval}
       poolEndOfCurrentEpoch={this.state.poolEndOfCurrentEpoch}
+      poolBlackoutWindow={this.state.poolBlackoutWindow}
 
       userUSDTBalance={this.state.userUSDTBalance}
       userStakedBalance={this.state.userStakedBalance}

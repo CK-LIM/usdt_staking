@@ -17,7 +17,7 @@ import fx from '../images/fx.svg';
 function StakeLiquidity(props) {
 
     const NOW_IN_MS = new Date().getTime();
-    
+
     return (
         <div id="content" style={{ margin: "0", color: '#ff9a04' }}>
             <MediaQuery minWidth={1001}>
@@ -160,7 +160,7 @@ function StakeLiquidity(props) {
                                                     stake={props.stake}
                                                     approve={props.approve}
                                                 />
-                                                : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
+                                                : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
                                             }
                                         </div> : null
                                 }
@@ -202,8 +202,8 @@ function StakeLiquidity(props) {
                                 {(props.wallet || props.walletConnect) ?
                                     <div className='iqmhrC'>
                                         {props.userEarnedRewardAmount == 0 ?
-                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                            : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 props.claimReward()
                                             }}>Claim</Buttons>
                                         }
@@ -254,7 +254,7 @@ function StakeLiquidity(props) {
                                         </div>
                                         {(props.wallet || props.walletConnect) ?
                                             <div className='iqmhrC'>
-                                                {props.userActiveBalanceNextEpoch > 0 ?
+                                                {props.userActiveBalanceNextEpoch > 0 && parseInt(props.poolTimeRemainingInCurrentEpoch) > parseInt(props.poolBlackoutWindow) ?
                                                     <PopupRequestWithdraw
                                                         poolEndOfCurrentEpoch={props.poolEndOfCurrentEpoch}
                                                         poolSize={props.poolSize}
@@ -263,8 +263,10 @@ function StakeLiquidity(props) {
                                                         userUSDTStakingAllowance={props.userUSDTStakingAllowance}
                                                         userActiveBalanceNextEpoch={props.userActiveBalanceNextEpoch}
                                                         requestWithdraw={props.requestWithdraw}
+                                                        poolTimeRemainingInCurrentEpoch={props.poolTimeRemainingInCurrentEpoch}
+                                                        poolBlackoutWindow={props.poolBlackoutWindow}
                                                     />
-                                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Request</Buttons>
+                                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Request</Buttons>
                                                 }
                                             </div> : null
                                         }
@@ -314,7 +316,7 @@ function StakeLiquidity(props) {
                                                         userWithdrawableAmount={props.userWithdrawableAmount}
                                                         withdraw={props.withdraw}
                                                     />
-                                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Withdraw</Buttons>
+                                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Withdraw</Buttons>
                                                 }
                                             </div> : null
                                         }
@@ -334,7 +336,7 @@ function StakeLiquidity(props) {
                                                         <td style={{ textAlign: "start" }} scope="col" width="120">
                                                             {props.blockchainLoading ?
                                                                 <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                                    <CountdownTimer targetDate={NOW_IN_MS + props.poolBlackoutWindow * 1000} />
+                                                                    <CountdownTimer targetDate={NOW_IN_MS + props.timeRemainingNextBlackout * 1000} />
                                                                 </div>
                                                                 : <div className='loader'></div>}</td>
                                                     </tr>
@@ -381,9 +383,6 @@ function StakeLiquidity(props) {
 
 
 
-
-
-
                     <MediaQuery minWidth={1001}>
                         <div className="mr-auto card cardbody" style={{ marginLeft: '15px', marginBottom: '12px', height: '100%', color: 'white', width: 'calc(50% - 1rem)' }}>
                             <div className="card-body">
@@ -393,7 +392,7 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div style={{ textAlign: "start" }} width="120">
-                                            Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who stake USDC to the liquidity staking pool. Known and approved market makers will use the staked USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol.
+                                            Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who stake USDC to the liquidity staking pool. Known and approved market makers will use the staked USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
                                         </div>
                                     </div>
                                 </div>
@@ -429,12 +428,12 @@ function StakeLiquidity(props) {
                                             Have thought about this pool? Discuss with others
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
-                                            <Buttons className="textWhiteLarge cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
-                                            }}>Forums</Buttons>
-                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            }}>&#8599; Forums</Buttons>
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
-                                            }}>Discord</Buttons>
+                                            }}>&#8599; Discord</Buttons>
                                         </div>
                                     </div>
                                 </div>
@@ -554,7 +553,7 @@ function StakeLiquidity(props) {
                                             stake={props.stake}
                                             approve={props.approve}
                                         />
-                                        : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
+                                        : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Stake</Buttons>
                                     }
                                 </div> : null
                         }
@@ -594,8 +593,8 @@ function StakeLiquidity(props) {
                         {(props.wallet || props.walletConnect) ?
                             <div className='iqmhrC'>
                                 {props.userEarnedRewardAmount == 0 ?
-                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                         props.claimReward()
                                     }}>Claim</Buttons>
                                 }
@@ -652,7 +651,7 @@ function StakeLiquidity(props) {
                                                 userActiveBalanceNextEpoch={props.userActiveBalanceNextEpoch}
                                                 requestWithdraw={props.requestWithdraw}
                                             />
-                                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Request</Buttons>
+                                            : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Request</Buttons>
                                         }
                                     </div> : null
                                 }
@@ -702,7 +701,7 @@ function StakeLiquidity(props) {
                                                 userWithdrawableAmount={props.userWithdrawableAmount}
                                                 withdraw={props.withdraw}
                                             />
-                                            : <Buttons className="textWhiteLarge cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Withdraw</Buttons>
+                                            : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '100px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Withdraw</Buttons>
                                         }
                                     </div> : null
                                 }
@@ -720,7 +719,7 @@ function StakeLiquidity(props) {
                                                 <td style={{ textAlign: "start" }} scope="col" width="120">
                                                     {props.blockchainLoading ?
                                                         <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                            <CountdownTimer targetDate={NOW_IN_MS + props.poolBlackoutWindow * 1000} />
+                                                            <CountdownTimer targetDate={NOW_IN_MS + props.timeRemainingNextBlackout * 1000} />
                                                         </div>
                                                         : <div className='loader'></div>}</td>
                                             </tr>
@@ -776,7 +775,7 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div style={{ textAlign: "start" }} width="120">
-                                    Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who stake USDC to the liquidity staking pool. Known and approved market makers will use the staked USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol.
+                                    Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who stake USDC to the liquidity staking pool. Known and approved market makers will use the staked USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
                                 </div>
                             </div>
                         </div>
@@ -812,12 +811,12 @@ function StakeLiquidity(props) {
                                     Have thought about this pool? Discuss with others
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
-                                    <Buttons className="textWhiteLarge cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
-                                    }}>Forums</Buttons>
-                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    }}>&#8599; Forums</Buttons>
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
-                                    }}>Discord</Buttons>
+                                    }}>&#8599; Discord</Buttons>
                                 </div>
                             </div>
                         </div>

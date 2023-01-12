@@ -47,15 +47,14 @@ function NavbMenu(props) {
           </Menu>
         </MediaQuery>
 
-        <MediaQuery minWidth={151}>
-          <NavLink className="" to="/staking/">
-            <ImgNextGen
-              srcWebp={marginx_logo_white}
-              height="50" alt=""
-            />
-          </NavLink>
-        </MediaQuery>
-
+        <div style={{ cursor: 'pointer' }} onClick={() => {
+          window.open(`https://marginx.io/`, '_blank')
+        }}>
+          <ImgNextGen
+            srcWebp={marginx_logo_white}
+            height="50" alt=""
+          />
+        </div>
 
         <div >
           <ul className="topright rowC">
@@ -76,33 +75,6 @@ function NavbMenu(props) {
                 }}>&#8599; Trade</div></div>
               </MediaQuery>
             </div>
-            {/* <MediaQuery minWidth={1301}>
-              <div className="center textGrey exLink0" style={{ marginTop: '2px', marginRight: '12px', color: "#ffae00", textDecorationLine: 'underline' }} onClick={async () => {
-                await props.addUSBTokenWallet()
-              }}>Add USB to Metamask
-              </div>
-              <div className="center textGrey exLink0" style={{ marginTop: '2px', marginRight: '12px', color: "#ffae00", textDecorationLine: 'underline' }} onClick={async () => {
-                await props.addBAVATokenWallet()
-              }}>Add BAVA to Metamask
-              </div>
-            </MediaQuery> */}
-
-            {/* <MediaQuery minWidth={401}>
-              <div className="center" style={{ marginTop: '2px', marginRight: '12px' }}>
-                <ImgNextGen
-                  srcWebp={logo}
-                  style={{ marginRight: '5px' }} width="25" height="25" alt=""
-                />
-                <div className="textbavaPriceBold" onClick={() => {
-                  window.open(`https://kyberswap.com/swap/avalanche/avax-to-bava`, '_blank')
-                }}><b>${parseFloat(props.BAVAPrice).toLocaleString('en-US', { maximumFractionDigits: 4 })}</b></div>
-              </div>
-            </MediaQuery> */}
-            {/* <MediaQuery minWidth={601}>
-              <div>
-                <Buttons className="textWhiteLarge center" style={{ height: '30px', marginRight: '8px' }} variant="secondary" size="lg">&nbsp;Avalanche&nbsp;</Buttons>
-              </div>
-            </MediaQuery> */}
 
 
             {props.wallet || props.walletConnect ?
@@ -114,7 +86,7 @@ function NavbMenu(props) {
                 style={{ padding: '0px' }}
               >
                 <div style={{ margin: '0px', padding: '5px' }}>
-                  <Dropdown.Toggle className='textWhiteLarge center cell2' variant="warning" size="sm" style={{ display: 'flex', backgroundColor: "#1e1f23", border: '0px', padding: "5px 16px", width: '147.6px', height: '32px', borderRadius: '22px' }}>
+                  <Dropdown.Toggle className='textWhiteLargeButton center cell2' variant="warning" size="sm" style={{ display: 'flex', backgroundColor: "#1e1f23", border: '0px', padding: "5px 16px", width: '147.6px', height: '32px', borderRadius: '22px' }}>
                     <span className="cell2 dropdown" style={{ fontSize: '15px', marginRight: "5px" }}>{props.first4Account}...{props.last4Account}</span>
                     <span className="cell2 dropdown" style={{ fontSize: "6px" }}>&#9660;</span>
                   </Dropdown.Toggle>
@@ -147,10 +119,10 @@ function NavbMenu(props) {
               <Popup trigger={open => (
                 <div style={{ margin: '0px', padding: '5px' }}>
                   <MediaQuery minWidth={401}>
-                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect Wallet</Buttons>
+                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect Wallet</Buttons>
                   </MediaQuery>
                   <MediaQuery maxWidth={400}>
-                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect</Buttons>
+                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '100%', color: 'black', border: '0px', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" >Connect</Buttons>
                   </MediaQuery>
                 </div>)} modal {...{ contentStyle }}>
                 {close => (

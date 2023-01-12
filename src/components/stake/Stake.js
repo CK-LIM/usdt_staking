@@ -46,11 +46,11 @@ function StakeMenu(props) {
                                 />
                                 <div>
                                     <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
-                                    <div className='kXLvz mb-3'><b>Welcome to Market Maker Liquidity Staking</b></div>
+                                    <div className='kXLvz mb-3'><b>Welcome to Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
                                         <div>
-                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
                                     </ButtonGroup>
@@ -87,11 +87,12 @@ function StakeMenu(props) {
                                             />
                                         </div>
                                     </div>
-                                    {props.userEarnedRewardAmount == 0 ?
-                                        <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                        : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                            props.claimReward()
-                                        }}>Claim</Buttons>
+                                    {
+                                        props.userEarnedRewardAmount == 0 ?
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                            : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                props.claimReward()
+                                            }}>Claim</Buttons>
                                     }
 
                                 </div>
@@ -150,7 +151,7 @@ function StakeMenu(props) {
                                     <tbody className="" style={{ color: 'white' }}>
                                         <tr>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Wallet</td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Staked</td>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120">Deposited</td>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Withdrawable</td>
                                         </tr>
                                     </tbody>
@@ -172,11 +173,11 @@ function StakeMenu(props) {
                                 />
                                 <div>
                                     <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
-                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>Welcome to Market Maker Liquidity Staking</b></div>
+                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>Welcome to Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
                                         <div>
-                                            <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
                                     </ButtonGroup>
@@ -189,11 +190,11 @@ function StakeMenu(props) {
                                 style={{ marginLeft: '0px', marginRight: '18px' }} width="85" alt=""
                             /> */}
                             <div className='bzThwT mb-2 mt-3' style={{ fontSize: '12px' }}><b>Introducing MarginX</b></div>
-                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>Welcome to Market Maker Liquidity Staking</b></div>
+                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>Welcome to Market Maker Liquidity Pool</b></div>
                             <ButtonGroup>
                                 <div>
-                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                        window.open(`https://starscan.io/fxcore/proposals/`, '_blank')
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
                                     }}>&#8599; Learn more</Buttons>
                                 </div>
                             </ButtonGroup>
@@ -230,8 +231,8 @@ function StakeMenu(props) {
                                     </div>
                                 </div>
                                 {props.userEarnedRewardAmount == 0 ?
-                                    <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                    : <Buttons className="textWhiteLarge cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                         props.claimReward()
                                     }}>Claim</Buttons>
                                 }
@@ -291,7 +292,7 @@ function StakeMenu(props) {
                                 <tbody className="" style={{ color: 'white' }}>
                                     <tr>
                                         <td style={{ textAlign: "start" }} scope="col" width="120">Wallet</td>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">Staked</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Deposited</td>
                                         <td style={{ textAlign: "start" }} scope="col" width="120">Withdrawable</td>
                                     </tr>
                                 </tbody>
@@ -372,7 +373,7 @@ function StakeMenu(props) {
                                         <tr>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Pool Size</td>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Yield / day</td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Your Stake</td>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120">Your Deposit</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -419,7 +420,7 @@ function StakeMenu(props) {
             <div className="mr-auto" style={{ marginBottom: '12px', marginTop: '40px', olor: 'white', maxWidth: '400px' }}>
                 <div className="card-body">
                     <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><big><b>Epoch</b></big></div>
-                    <div style={{ color: 'grey' }}>Earn rewards for contributing stability</div>
+                    <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
                 </div>
             </div>
 
@@ -459,7 +460,7 @@ function StakeMenu(props) {
                         <div className="mr-auto card cardbody" style={{ marginBottom: '12px', height: '180px', color: 'white' }}>
                             <div className="card-body">
                                 <div style={{ marginBottom: "80px" }}>
-                                    <div className="float-left textBlackLarge">
+                                    <div className="float-left textBlackLarge" style={{ fontSize: '1.25rem', color: 'white' }}>
                                         Reward Pool</div>
                                 </div>
                                 <div className="center">
