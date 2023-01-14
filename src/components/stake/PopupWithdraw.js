@@ -24,7 +24,7 @@ function PopupWithdraw(props) {
             setMessage('Withdraw funds')
             setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userWithdrawableAmount).value) {
-            setMessage('More than withdrawable Amount')
+            setMessage('Insufficient withdrawable Amount')
             setValidAmount(false)
         } else {
             setMessage('Withdraw funds')

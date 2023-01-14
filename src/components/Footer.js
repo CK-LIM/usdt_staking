@@ -1,64 +1,101 @@
 import React, { Component } from 'react'
 import './App.css';
-import { Link } from 'react-router-dom';
-import discord from './images/discord.svg'
-import twitter from './images/twitter.svg'
-import medium from './images/medium.svg'
-import git from './images/github.svg'
-import gitbook from './images/docs.svg'
+import MediaQuery from 'react-responsive';
+import discord from './images/Discord.svg'
+import twitter from './images/Twitter.svg'
+import git from './images/Github.svg'
+import email from './images/Email.svg'
+import telegram from './images/Telegram.svg'
+import youtube from './images/YouTube.svg'
 
 class Footer extends Component {
 
     render() {
         return (
-            <footer id="content">
-                <div style={{ marginTop: '0px' }}>
-                    <br />
-                    <div className="rowS center">
-                        <img className="center" src={medium} width="25" alt="" />&nbsp;&nbsp;
-                        <div className="center" style={{ color: "black", fontSize: '16px' }}><b>BAKLAVA.SPACE © 2022</b></div>
-                    </div>
-                    {/* <div className="center" style={{ color: "black", fontSize: '14px', marginTop: "5px" }}>Tools for defi users.</div> */}
-                    {/* <div className="center" style={{ color: "black", fontSize: '14px', marginTop: "5px" }}>Baklava Farms autocompound farm rewards.</div> */}
-                    <div className="center" style={{ color: "black", fontSize: '14px', marginTop: "5px" }}>Synthetic asset creation and exchange platform.</div>
-
-
-                    <div className="center rowS" style={{ marginTop: "10px" }}>
-                        <div className="exLink0 " style={{ fontSize: "14px", height: "22px", marginRight: '20px', color: 'black' }} onClick={() => {
-                            window.open(`https://baklavaspace.gitbook.io/main/guides/litepaper`, '_blank')
-                        }}><div className="hover" style={{ fontSize: "14px", padding: "0" }}>Litepaper</div>
-                        </div>
-                        <div style={{ fontSize: "14px", height: "22px", marginRight: '20px', color: 'black' }}>
-                            <div className="" style={{ fontSize: "14px", padding: "0" }}>|</div></div>
-                        <div className="exLink0" style={{ fontSize: "14px", height: "22px", color: 'black' }}>
-                            <div className="hover" style={{ fontSize: "14px", padding: "0" }} ><Link className='hover1' to='/disclaimer/' style={{ fontSize: "14px", padding: "0" }}>Disclaimer</Link></div>
-                        </div>
-                    </div>
-
-
-                    <div className="center rowS" style={{ marginTop: "15px" }}>
-                        <div className="exLink0" style={{ marginRight: '40px' }} onClick={() => {
-                            window.open(`https://baklavaspace.gitbook.io/`, '_blank')
-                        }}><div className="mb-1"><img src={gitbook} width="20" height="20" align="left" alt="" /></div>
-                        </div>
-                        <div className="exLink0" style={{ marginRight: '40px' }} onClick={() => {
-                            window.open(`https://twitter.com/baklavaspace`, '_blank')
-                        }}><div className="mb-1"><img src={twitter} width="20" height="20" align="left" alt="" /></div>
-                        </div>
-                        <div className="exLink0" style={{ marginRight: '40px' }} onClick={() => {
-                            window.open(`https://medium.com/@baklavaspace`, '_blank')
-                        }}><div className="mb-1"><img src={medium} width="20" height="20" align="left" alt="" /></div>
-                        </div>
-                        <div className="exLink0" style={{ marginRight: '40px' }} onClick={() => {
-                            window.open(`https://github.com/baklavaspace`, '_blank')
-                        }}><div className="mb-1"><img src={git} width="20" height="20" align="left" alt="" /></div>
-                        </div>
-                        <div className="exLink0" style={{ marginRight: '0px' }} onClick={() => {
-                            window.open(`https://discord.gg/E6aYX5ukAw`, '_blank')
-                        }}><div className="mb-1"><img src={discord} width="20" height="20" align="left" alt="" /></div>
-                        </div>
-                    </div>
-                </div><br /><br />
+            <footer className="bottom" style={{ height: "30px", position: "fixed", width: "100%", bottom: "0", zIndex: "999", backgroundColor: "black" }}>
+                <div style={{ height: '30px', padding: '0 32px' }}>
+                    <p class="copyright" style={{ marginBottom: '0px' }}>Copyright © 2023 MarginX. All Rights Reserved. Powered by Function X.</p>
+                    <MediaQuery minWidth={1201}>
+                        <p className="link rowS" style={{ marginBottom: '0px' }}>
+                            <div className='footer-link-item'>
+                                <a href="https://t.me/+GiT9MPWQaPU2ZGU9" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://t.me/+GiT9MPWQaPU2ZGU9`, '_blank')
+                                }}><img src={telegram} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://www.youtube.com/channel/UCJ8ggaUjfS5at6_toTJM8yg" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://www.youtube.com/channel/UCJ8ggaUjfS5at6_toTJM8yg`, '_blank')
+                                }}><img src={youtube} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://twitter.com/marginx_io" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://twitter.com/marginx_io`, '_blank')
+                                }}><img src={twitter} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://discord.com/invite/7yUjqadZFq" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
+                                }}><img src={discord} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://github.com/marginxio" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://github.com/marginxio`, '_blank')
+                                }}><img src={git} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="mailto:hello@marginx.io" style={{ cursor: 'pointer', marginRight: '0px' }} onClick={() => {
+                                    window.open(`https://outlook.live.com/mail/0/deeplink/compose?mailtouri=mailto%3ahello%40marginx.io`, '_blank')
+                                }}><img src={email} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                        </p>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1200}>
+                        <p className="linkCenter rowS" style={{ marginBottom: '0px' }}>
+                            <div className='footer-link-item'>
+                                <a href="https://t.me/+GiT9MPWQaPU2ZGU9" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://t.me/+GiT9MPWQaPU2ZGU9`, '_blank')
+                                }}><img src={telegram} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://www.youtube.com/channel/UCJ8ggaUjfS5at6_toTJM8yg" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://www.youtube.com/channel/UCJ8ggaUjfS5at6_toTJM8yg`, '_blank')
+                                }}><img src={youtube} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://twitter.com/marginx_io" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://twitter.com/marginx_io`, '_blank')
+                                }}><img src={twitter} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://discord.com/invite/7yUjqadZFq" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
+                                }}><img src={discord} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="https://github.com/marginxio" style={{ cursor: 'pointer', marginRight: '25px' }} onClick={() => {
+                                    window.open(`https://github.com/marginxio`, '_blank')
+                                }}><img src={git} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                            <div className='footer-link-item'>
+                                <a href="mailto:hello@marginx.io" style={{ cursor: 'pointer', marginRight: '0px' }} onClick={() => {
+                                    window.open(`https://outlook.live.com/mail/0/deeplink/compose?mailtouri=mailto%3ahello%40marginx.io`, '_blank')
+                                }}><img src={email} width="20" height="20" align="left" alt="" />
+                                </a>
+                            </div>
+                        </p>
+                    </MediaQuery>
+                </div>
             </footer>
         );
     }

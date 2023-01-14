@@ -249,7 +249,7 @@ class App extends Component {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
     }
-    window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/oVlBkzgZrAVhL6zvDAB73MtQK7EiiRhH`);
+    window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
     try {
       let id = await window.web3Eth.eth.net.isListening()
     } catch (e) {
@@ -716,6 +716,7 @@ class App extends Component {
     let stakeContent
     let stakeLiquidityContent
     let navMenuContent
+    let footerContent
 
 
     navMenuContent = <NavbMenu
@@ -734,6 +735,8 @@ class App extends Component {
       addUSBTokenWallet={this.addUSBTokenWallet}
       addBAVATokenWallet={this.addBAVATokenWallet}
       sortFarm={this.sortFarm}
+    />
+    footerContent = <Footer
     />
     stakeContent = <Stake
       poolSize={this.state.poolSize}
@@ -805,7 +808,7 @@ class App extends Component {
               <Route path="/" exact > {navMenuContent} </Route>
               <Route path="/liquidity/" exact > {navMenuContent} </Route>
             </Switch>
-            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '24px', paddingRight: '24px' }}>
+            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '0px', paddingRight: '0px' }}>
               <main role="main" className="content ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
                 <Switch>
                   <Route path="/" exact > {stakeContent} </Route>
@@ -813,9 +816,9 @@ class App extends Component {
                 </Switch>
               </main>
             </div>
-            {/* <div className="footerBackground"><div className="container-fluid" style={{ marginTop: "150px", position: "relative", maxWidth: '1000px' }}>
-              <Footer />
-            </div></div> */}
+            <div className="container-fluid" style={{ padding: '0px', marginTop: "150px", position: "relative" }}>
+              {footerContent}
+            </div>
           </div>
         </ScrollToTop>
       </Router>

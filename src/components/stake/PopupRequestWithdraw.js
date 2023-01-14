@@ -25,7 +25,7 @@ function PopupRequestWithdraw(props) {
             setMessage('Request withdraw')
             setValidAmount(false)
         }  else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userStakedBalance).value) {
-            setMessage('Insufficient Staked Amount')
+            setMessage('Insufficient Deposited Amount')
             setValidAmount(false)
         } else if (parseInt(props.poolTimeRemainingInCurrentEpoch) <= parseInt(props.poolBlackoutWindow)) {
             setMessage('In Blackout Window')

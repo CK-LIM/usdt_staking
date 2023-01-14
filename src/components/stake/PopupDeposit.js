@@ -10,7 +10,7 @@ import usdt from '../images/usdt.svg';
 
 function PopupDeposit(props) {
 
-    const [message, setMessage] = useState("Enter Stake Amount");
+    const [message, setMessage] = useState("Enter Deposit Amount");
     const [validAmount, setValidAmount] = useState(false);
     const [txLoading, setTxLoading] = useState(false);
     const [textInputRef, setTextInputRef] = useState("0");
@@ -19,22 +19,22 @@ function PopupDeposit(props) {
     const changeHandler = (event) => {
         let result = !isNaN(+event); // true if its a number, false if not
         if (event == "") {
-            setMessage('Enter Stake Amount')
+            setMessage('Enter Deposit Amount')
             setValidAmount(false)
         } else if (parseInt(event) == 0) {
-            setMessage('Enter Stake Amount')
+            setMessage('Enter Deposit Amount')
             setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userUSDTBalance).value) {
             setMessage('Insufficient Balance')
             setValidAmount(false)
         } else {
-            setMessage('Enter Stake Amount')
+            setMessage('Enter Deposit Amount')
             setValidAmount(true)
         }
     }
 
     const setDefault = () => {
-        setMessage('Enter Stake Amount');
+        setMessage('Enter Deposit Amount');
         setValidAmount(false);
         setTextInputRef('0');
         setTxLoading(false);
@@ -68,7 +68,7 @@ function PopupDeposit(props) {
     return (
         <div id="content">
             <Popup
-                trigger={open => (<Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Stake</Buttons>)}
+                trigger={open => (<Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">Deposit</Buttons>)}
                 modal {...{ contentStyle }}
                 onClose={setDefault}
             >
@@ -78,7 +78,7 @@ function PopupDeposit(props) {
                             &#x2715;
                         </Buttons>
 
-                        <h4 style={{ color: 'white', fontSize: '18px', marginBottom: '16px' }}>Stake on Liquidity Pool </h4>
+                        <h4 style={{ color: 'white', fontSize: '18px', marginBottom: '16px' }}>Deposit on Liquidity Pool </h4>
                         <div className='' style={{ color: 'silver', fontSize: '12px', lineHeight: '24px', marginBottom: '30px' }}>Note: Withdrawals are processed once every 28 days and must be requested at least 7 days before the end of the epoch.</div>
 
                         <div className="" style={{ marginBottom: '18px' }}>
@@ -86,7 +86,7 @@ function PopupDeposit(props) {
 
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Asset</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Staked: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Deposited: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                                 </div>
                                 <div className='rowC' >
                                     <img src={usdt} className='mr-1' width="24px" height="24px" alt="" />
@@ -196,7 +196,7 @@ function PopupDeposit(props) {
                                     <div>
                                         {txLoading == false ?
                                             <div>{(bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) ?
-                                                <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Stake funds</Buttons>
+                                                <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Deposit funds</Buttons>
                                                 : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Approve USDT</Buttons>}</div>
                                             : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
                                         }

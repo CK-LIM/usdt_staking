@@ -50,7 +50,7 @@ function StakeMenu(props) {
                                     <ButtonGroup>
                                         <div>
                                             <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
+                                                window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
                                     </ButtonGroup>
@@ -101,7 +101,6 @@ function StakeMenu(props) {
                             <div className="textWhite" style={{ fontSize: '20px', color: 'white' }}>
                                 <big><b>Portfolio</b></big></div>
                             <div style={{ color: 'grey' }}>Track balances</div>
-
 
                             <div>
                                 <table>
@@ -163,7 +162,7 @@ function StakeMenu(props) {
             </MediaQuery>
 
             <MediaQuery maxWidth={980}>
-                <div className="card cardbody badgebody" style={{ marginBottom: '30px', color: 'white', height: '100%', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
+                <div className="card cardbody badgebody" style={{ marginBottom: '20px', color: 'white', height: '100%', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
                     <div className="card-body" style={{ marginLeft: "10px", padding: '10px' }}>
                         <MediaQuery minWidth={451}>
                             <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
@@ -185,11 +184,7 @@ function StakeMenu(props) {
                             </div>
                         </MediaQuery>
                         <MediaQuery maxWidth={450}>
-                            {/* <ImgNextGen
-                                srcWebp={marginxLogo}
-                                style={{ marginLeft: '0px', marginRight: '18px' }} width="85" alt=""
-                            /> */}
-                            <div className='bzThwT mb-2 mt-3' style={{ fontSize: '12px' }}><b>Introducing MarginX</b></div>
+                            <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
                             <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>Welcome to Market Maker Liquidity Pool</b></div>
                             <ButtonGroup>
                                 <div>
@@ -203,7 +198,7 @@ function StakeMenu(props) {
                 </div>
 
 
-                <div className="mr-auto card cardbody" style={{ marginLeft: '0px', color: 'white', height: '220px', minWidth: '300px', maxWidth: '485px', borderRadius: "25px", backgroundImage: `url(${nftBackground})`, backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+                <div className="mr-auto card cardbody" style={{ marginBottom: '20px', marginLeft: '0px', color: 'white', height: '220px', minWidth: '300px', maxWidth: '485px', borderRadius: "25px", backgroundImage: `url(${nftBackground})`, backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                     <div className="card-body" style={{ padding: '15px' }}>
                         <div className="ml-auto mr-auto card cardbodyBlack float-right" style={{ marginBottom: '12px', color: 'white', maxWidth: '400px' }}>
                             <div className="card-body" style={{ padding: '15px' }}>
@@ -304,9 +299,9 @@ function StakeMenu(props) {
 
 
 
-            <div className="mr-auto" style={{ marginBottom: '12px', marginTop: '10px', color: 'white', maxWidth: '400px' }}>
+            <div className="mr-auto" style={{ marginTop: '10px', color: 'white', maxWidth: '400px' }}>
                 <div className="card-body">
-                    <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><big><b>Staking</b></big></div>
+                    <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Maker LP Incentives</b></div>
                     <div style={{ color: 'grey' }}>Earn rewards for contributing stability</div>
                 </div>
             </div>
@@ -416,14 +411,23 @@ function StakeMenu(props) {
 
             </div >
 
-
-            <div className="mr-auto" style={{ marginBottom: '12px', marginTop: '40px', olor: 'white', maxWidth: '400px' }}>
-                <div className="card-body">
-                    <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><big><b>Epoch</b></big></div>
-                    <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
+            <MediaQuery minWidth={981}>
+                <div className="mr-auto" style={{ marginTop: '40px', olor: 'white', maxWidth: '400px' }}>
+                    <div className="card-body">
+                        <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
+                        <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
+                    </div>
                 </div>
-            </div>
+            </MediaQuery>
 
+            <MediaQuery maxWidth={980}>
+                <div className="mr-auto" style={{ marginTop: '30px', olor: 'white', maxWidth: '400px' }}>
+                    <div className="card-body">
+                        <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
+                        <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
+                    </div>
+                </div>
+            </MediaQuery>
 
 
 
@@ -557,10 +561,8 @@ function StakeMenu(props) {
                         </div>
                     </div>
                 </div>
-
             </MediaQuery>
 
-            <br /><br /><br /><br /><br /><br /><br /><br />
         </div >
     );
 }
