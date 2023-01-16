@@ -21,7 +21,7 @@ function PopupRequestWithdraw(props) {
         if (event == "") {
             setMessage('Request withdraw')
             setValidAmount(false)
-        }  else if (parseInt(event) == 0) {
+        }  else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value == 0) {
             setMessage('Request withdraw')
             setValidAmount(false)
         }  else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userStakedBalance).value) {

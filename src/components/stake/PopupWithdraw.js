@@ -20,7 +20,7 @@ function PopupWithdraw(props) {
         if (event == "") {
             setMessage('Withdraw funds')
             setValidAmount(false)
-        }  else if (parseInt(event) == 0) {
+        }  else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value == 0) {
             setMessage('Withdraw funds')
             setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userWithdrawableAmount).value) {
