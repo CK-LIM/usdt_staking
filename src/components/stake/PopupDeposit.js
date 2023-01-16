@@ -79,7 +79,7 @@ function PopupDeposit(props) {
                         </Buttons>
 
                         <h4 style={{ color: 'white', fontSize: '18px', marginBottom: '16px' }}>Deposit on Liquidity Pool </h4>
-                        <div className='' style={{ color: 'silver', fontSize: '12px', lineHeight: '24px', marginBottom: '30px' }}>Note: Withdrawals are processed once every 28 days and must be requested at least 7 days before the end of the epoch.</div>
+                        <div className='' style={{ color: 'silver', fontSize: '12px', lineHeight: '24px', marginBottom: '30px' }}>Note: Withdrawals are processed once every 28 days and must be requested at least 14 days before the end of the epoch.</div>
 
                         <div className="" style={{ marginBottom: '18px' }}>
                             <div className="cell2" style={{ backgroundColor: '#2a2c32', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px" }}>
