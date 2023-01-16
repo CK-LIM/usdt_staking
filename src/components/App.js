@@ -329,13 +329,13 @@ class App extends Component {
     window.provider = new WalletConnectProvider({
       rpc: {
         // 530: "https://fx-json-web3.functionx.io:8545"
-        43114: "https://api.avax.network/ext/bc/C/rpc"
+        // 43114: "https://api.avax.network/ext/bc/C/rpc"
         // 56: `https://bsc-dataseed.binance.org/`
-        // 1: "https://api.avax.network/ext/bc/C/rpc"
+        1: `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`
       },
       // chainId: 530,
-      chainId: 43114,
-      // chainId: 56,
+      // chainId: 43114,
+      chainId: 1,
     });
     await window.provider.enable();
     window.web3Con = await new Web3(window.provider);
@@ -384,17 +384,17 @@ class App extends Component {
       if (switchError.code === 4902) {
         try {
           // console.log(switchError.code)
-          await window.ethereum.request({
-            method: 'wallet_addEthereumChain',
-            params: [{
-              chainId: '0xa86a', rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'], chainName: 'Avalanche Mainnet C-Chain',
-              nativeCurrency: {
-                name: 'AVAX',
-                symbol: 'AVAX', // 2-6 characters long
-                decimals: 18
-              }, blockExplorerUrls: ['https://snowtrace.io/']
-            }],
-          });
+          // await window.ethereum.request({
+          //   method: 'wallet_addEthereumChain',
+          //   params: [{
+          //     chainId: '0x1', rpcUrls: [''], chainName: 'Ethereum Mainnet',
+          //     nativeCurrency: {
+          //       name: 'AVAX',
+          //       symbol: 'AVAX', // 2-6 characters long
+          //       decimals: 18
+          //     }, blockExplorerUrls: ['https://snowtrace.io/']
+          //   }],
+          // });
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           this.setState({ chainId })
           if (this.state.chainId == "0x61") {
