@@ -121,8 +121,6 @@ class App extends Component {
     this.setState({ poolEpochInterval })
     this.setState({ poolEndOfCurrentEpoch })
     this.setState({ poolBlackoutWindow })
-    console.log(poolTimeRemainingInCurrentEpoch)
-    console.log(poolBlackoutWindow)
 
     this.setState({ blockchainLoading: true })
   }

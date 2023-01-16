@@ -801,7 +801,7 @@ footer {
   background-color: #000000;
 }
 
-div.footer-link-item {
+span.footer-link-item {
   transition: opacity 0.1s;
   cursor: pointer;
   z-index: 1;
@@ -809,7 +809,7 @@ div.footer-link-item {
   height: 20px;
 }
 
-div.footer-link-item:hover {
+span.footer-link-item:hover {
   cursor: pointer;
   z-index: 1;
   opacity: 1;

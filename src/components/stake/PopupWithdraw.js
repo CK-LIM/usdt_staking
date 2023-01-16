@@ -198,10 +198,10 @@ function PopupWithdraw(props) {
                                 close()
                             }
                         }}>
-                            <div class="lkBtSA" style={{ borderRadius: '20px', width: '100%' }}>
+                            <div className="lkBtSA" style={{ borderRadius: '20px', width: '100%' }}>
 
                                 <div className='iqmhrB'>
-                                    <div class="OYMUv">
+                                    <div className="OYMUv">
                                         <table>
                                             <thead className="iddTJz" style={{ color: 'white' }}>
                                                 <tr>
@@ -229,7 +229,7 @@ function PopupWithdraw(props) {
                                     <div>
                                         {txLoading == false ?
                                             <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">{message}</Buttons>
-                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
                                         }
                                     </div>
                                 }

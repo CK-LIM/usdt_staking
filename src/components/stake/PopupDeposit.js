@@ -198,7 +198,7 @@ function PopupDeposit(props) {
                                             <div>{(bigInt(props.userUSDTStakingAllowance).value >= bigInt(window.web3Eth.utils.toWei(textInputRef, 'mWei')).value) ?
                                                 <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Deposit funds</Buttons>
                                                 : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light">Approve USDT</Buttons>}</div>
-                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
+                                            : <Buttons type="submit" className="greenGradientButton cell2 center" variant="light"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></Buttons>
                                         }
                                     </div>
                                 }

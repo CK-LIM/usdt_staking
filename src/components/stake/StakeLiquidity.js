@@ -69,7 +69,7 @@ function StakeLiquidity(props) {
                                                                 />
                                                             </div>
                                                         </div>
-                                                        : <span class="loader"></span>}
+                                                        : <span className="loader"></span>}
                                                 </td>
                                             </tr>
                                         </thead>
@@ -102,7 +102,7 @@ function StakeLiquidity(props) {
                                                                 />
                                                             </div>
                                                         </div>
-                                                        : <span class="loader"></span>}</td>
+                                                        : <span className="loader"></span>}</td>
                                             </tr>
                                         </thead>
                                         <tbody className="textBlackSmall" style={{ color: 'white' }}>
@@ -117,7 +117,7 @@ function StakeLiquidity(props) {
 
 
                         <div className="blackBox">
-                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                            <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
                                 <div className="ml-auto mr-auto card cardbody mr-2" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -143,7 +143,7 @@ function StakeLiquidity(props) {
                                             </thead>
                                             <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                 <tr>
-                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -166,7 +166,7 @@ function StakeLiquidity(props) {
                                 }
                             </div>
 
-                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
+                            <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '20px' }}>
                                 <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -220,7 +220,7 @@ function StakeLiquidity(props) {
                             <div className="mb-4" style={{ color: 'grey' }}>View and manage your pending and available withdraws.</div>
                             <div style={{ marginTop: '1.5rem', display: 'block' }}>
                                 <div className="blackBox">
-                                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                                    <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                         <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                             <div className="card-body">
                                                 <div style={{ marginBottom: "65px" }}>
@@ -272,7 +272,7 @@ function StakeLiquidity(props) {
                                         }
                                     </div>
 
-                                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                                    <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                         <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', maxWidth: '265px', color: 'white' }}>
                                             <div className="card-body">
                                                 <div style={{ marginBottom: "65px" }}>
@@ -392,7 +392,7 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div style={{ textAlign: "start" }} width="120">
-                                            Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDC to the liquidity pool. Known and approved market makers will use the deposited USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
+                                            Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDT to the liquidity pool. Known and approved market makers will use the deposited USDT to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDT from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
                                         </div>
                                     </div>
                                 </div>
@@ -403,7 +403,7 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div style={{ textAlign: "start" }} width="120">
-                                            A portion of deposited USDC could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
+                                            A portion of deposited USDT could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
                                         </div>
                                     </div>
                                 </div>
@@ -414,7 +414,7 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div scope="col" style={{ textAlign: "start" }} width="120">
-                                            Users will receive $FX, distributed continuously according to each user's portion of the total USDC in the pool. Users must request to withdraw USDC at least 7 days before the current epoch ends in order to be able to withdraw their USDC in the next epoch. If users do not request to withdraw, their deposited USDC is rolled over into the next epoch.
+                                            Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool. Users must request to withdraw USDT at least 7 days before the current epoch ends in order to be able to withdraw their USDT in the next epoch. If users do not request to withdraw, their deposited USDT is rolled over into the next epoch.
                                         </div>
                                     </div>
                                 </div>
@@ -465,7 +465,7 @@ function StakeLiquidity(props) {
                                                         />
                                                     </div>
                                                 </div>
-                                                : <span class="loader"></span>}
+                                                : <span className="loader"></span>}
                                         </td>
                                     </tr>
                                 </thead>
@@ -498,7 +498,7 @@ function StakeLiquidity(props) {
                                                         />
                                                     </div>
                                                 </div>
-                                                : <span class="loader"></span>}</td>
+                                                : <span className="loader"></span>}</td>
                                     </tr>
                                 </thead>
                                 <tbody className="textBlackSmall" style={{ color: 'white' }}>
@@ -510,7 +510,7 @@ function StakeLiquidity(props) {
                         </div>
                     </div>
 
-                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                    <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                         <div className="ml-auto mr-auto card cardbody mr-2" style={{ height: '160px', width: '100%', color: 'white' }}>
                             <div className="card-body">
                                 <div style={{ marginBottom: "65px" }}>
@@ -536,7 +536,7 @@ function StakeLiquidity(props) {
                                     </thead>
                                     <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                         <tr>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDC</td>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -558,7 +558,7 @@ function StakeLiquidity(props) {
                                 </div> : null
                         }
                     </div>
-                    <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                    <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                         <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
                             <div className="card-body">
                                 <div style={{ marginBottom: "65px" }}>
@@ -607,7 +607,7 @@ function StakeLiquidity(props) {
                         <label className="textWhite" style={{ marginTop: '5px', fontSize: '22px', color: 'white' }}><big><b>Withdraws</b></big></label>
                         <div className="mb-4" style={{ color: 'grey' }}>View and manage your pending and available withdraws.</div>
                         <div style={{ marginTop: '1.5rem', display: 'block' }}>
-                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                            <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                 <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -657,7 +657,7 @@ function StakeLiquidity(props) {
                                 }
                             </div>
 
-                            <div class="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
+                            <div className="lkBtSA" style={{ borderRadius: '20px', marginBottom: '12px' }}>
                                 <div className="ml-auto mr-auto card cardbody" style={{ height: '160px', width: '100%', color: 'white' }}>
                                     <div className="card-body">
                                         <div style={{ marginBottom: "65px" }}>
@@ -775,7 +775,7 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div style={{ textAlign: "start" }} width="120">
-                                    Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDC to the liquidity pool. Known and approved market makers will use the deposited USDC to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDC from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
+                                    Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDT to the liquidity pool. Known and approved market makers will use the deposited USDT to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDT from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
                                 </div>
                             </div>
                         </div>
@@ -786,7 +786,7 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div style={{ textAlign: "start" }} width="120">
-                                    A portion of deposited USDC could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
+                                    A portion of deposited USDT could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
                                 </div>
                             </div>
                         </div>
@@ -797,7 +797,7 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div scope="col" style={{ textAlign: "start" }} width="120">
-                                    Users will receive $FX, distributed continuously according to each user's portion of the total USDC in the pool. Users must request to withdraw USDC at least 7 days before the current epoch ends in order to be able to withdraw their USDC in the next epoch. If users do not request to withdraw, their deposited USDC is rolled over into the next epoch.
+                                    Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool. Users must request to withdraw USDT at least 7 days before the current epoch ends in order to be able to withdraw their USDT in the next epoch. If users do not request to withdraw, their deposited USDT is rolled over into the next epoch.
                                 </div>
                             </div>
                         </div>

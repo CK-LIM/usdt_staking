@@ -64,8 +64,8 @@ function StakeMenu(props) {
                         <div className="card-body" style={{ padding: '15px' }}>
                             <div className="ml-auto mr-auto card cardbodyBlack float-right" style={{ marginBottom: '12px', color: 'white', maxWidth: '400px' }}>
                                 <div className="card-body" style={{ padding: '15px' }}>
-                                    <div class="ePxacs">
-                                        <div class="ctBHOr">+</div>Rewards</div>
+                                    <div className="ePxacs">
+                                        <div className="ctBHOr">+</div>Rewards</div>
                                     <div className="textWhite rowC mb-2" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
                                         <td style={{ textAlign: "start" }} scope="col" width="120">
                                             {props.accountLoading ?
@@ -80,7 +80,7 @@ function StakeMenu(props) {
                                                 </div>
                                                 : <span>-</span>}
                                         </td>
-                                        <div>
+                                        <div style={{ textAlign: "end" }}>
                                             <ImgNextGen
                                                 srcWebp={fx}
                                                 style={{ marginLeft: '6px', marginRight: '0px' }} width="28px" alt=""
@@ -202,8 +202,8 @@ function StakeMenu(props) {
                     <div className="card-body" style={{ padding: '15px' }}>
                         <div className="ml-auto mr-auto card cardbodyBlack float-right" style={{ marginBottom: '12px', color: 'white', maxWidth: '400px' }}>
                             <div className="card-body" style={{ padding: '15px' }}>
-                                <div class="ePxacs">
-                                    <div class="ctBHOr">+</div>Rewards</div>
+                                <div className="ePxacs">
+                                    <div className="ctBHOr">+</div>Rewards</div>
                                 <div className="textWhite rowC mb-2" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
                                     <td style={{ textAlign: "start" }} scope="col" width="120">
                                         {props.accountLoading ?
@@ -306,7 +306,7 @@ function StakeMenu(props) {
                 </div>
             </div>
 
-            <div class="lkBtSA" style={{ borderRadius: '20px' }}>
+            <div className="lkBtSA" style={{ borderRadius: '20px' }}>
                 <Link to="/liquidity" className='exLink0'>
                     <div className="card cardbody cell3" style={{ height: '100%', color: 'white', minWidth: '300px', maxWidth: '400px', }}>
                         <div className="card-body">
@@ -335,7 +335,7 @@ function StakeMenu(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    : <span class="loader"></span>}
+                                                    : <span className="loader"></span>}
                                             </td>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">
                                                 {props.blockchainLoading ?
@@ -348,7 +348,7 @@ function StakeMenu(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    : <span class="loader"></span>}
+                                                    : <span className="loader"></span>}
                                             </td>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">
                                                 {props.accountLoading ?
@@ -379,8 +379,8 @@ function StakeMenu(props) {
 
                 {(props.wallet || props.walletConnect) ?
                     <div className='iqmhrB'>
-                        <div class="OYMUv">
-                            <div class='eWMWa-D'>
+                        <div className="OYMUv">
+                            <div className='eWMWa-D'>
                                 <span>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
                                 <div><ImgNextGen
                                     srcWebp={fx}
@@ -391,7 +391,7 @@ function StakeMenu(props) {
                                 Your rewards
                             </div>
                         </div>
-                        <div class="rowC">
+                        <div className="rowC">
                             {props.userEarnedRewardAmount == 0 ?
                                 <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
                                 : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px' }} size="lg" onClick={() => {
