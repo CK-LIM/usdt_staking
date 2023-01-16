@@ -20,11 +20,9 @@ function PopupDeposit(props) {
         let result = !isNaN(+event); // true if its a number, false if not
         if (event == "") {
             setMessage('Enter Deposit Amount')
-            console.log("here1")
             setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value == 0) {
             setMessage('Enter Deposit Amount')
-            console.log("here2")
             setValidAmount(false)
         } else if (bigInt(window.web3Eth.utils.toWei(event, 'mWei')).value > bigInt(props.userUSDTBalance).value) {
             setMessage('Insufficient Balance')

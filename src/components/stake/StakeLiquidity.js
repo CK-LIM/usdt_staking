@@ -27,7 +27,7 @@ function StakeLiquidity(props) {
                     </Link>
                     <div style={{ width: '100%' }}>
                         <label className="textWhite" style={{ marginTop: '25px', fontSize: '22px', color: 'white' }}><big><b>Liquidity Pool</b></big></label>
-                        <div className="" style={{ color: 'grey' }}>Deposit and earn rewards for contributing to MarginX exchange liquidity.</div>
+                        <div className="" style={{ color: 'grey' }}>Deposit and earn rewards for contributing to MarginX Market Maker Liquidity Pool.</div>
                     </div>
                 </div>
             </MediaQuery>
@@ -39,7 +39,7 @@ function StakeLiquidity(props) {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div style={{ width: '100%' }}>
                         <label className="textWhite" style={{ marginTop: '5px', fontSize: '22px', color: 'white' }}><big><b>Liquidity Pool</b></big></label>
-                        <div className="" style={{ color: 'grey' }}>Deposit and earn rewards for contributing to MarginX exchange liquidity.</div>
+                        <div className="" style={{ color: 'grey' }}>Deposit and earn rewards for contributing to MarginX Market Maker Liquidity Pool.</div>
                     </div>
                 </div>
             </MediaQuery>
@@ -75,7 +75,7 @@ function StakeLiquidity(props) {
                                         </thead>
                                         <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                             <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120">currently being deposited</td>
+                                                <td style={{ textAlign: "start" }} scope="col" width="120">Total deposits</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -107,7 +107,7 @@ function StakeLiquidity(props) {
                                         </thead>
                                         <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                             <tr>
-                                                <td style={{ textAlign: "start" }} scope="col" width="120">Estimated yield/ day</td>
+                                                <td style={{ textAlign: "start" }} scope="col" width="120">Estimated yield / day</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -143,7 +143,7 @@ function StakeLiquidity(props) {
                                             </thead>
                                             <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                 <tr>
-                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT</td>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT (ERC-20)</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -246,7 +246,7 @@ function StakeLiquidity(props) {
                                                     </thead>
                                                     <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                         <tr>
-                                                            <td style={{ textAlign: "start" }} scope="col" width="120">in requested withdraws</td>
+                                                            <td style={{ textAlign: "start" }} scope="col" width="120">In requested withdraws</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -298,7 +298,7 @@ function StakeLiquidity(props) {
                                                     </thead>
                                                     <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                         <tr>
-                                                            <td style={{ textAlign: "start" }} scope="col" width="120">ready to withdraw</td>
+                                                            <td style={{ textAlign: "start" }} scope="col" width="120">Ready to withdraw</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -392,7 +392,13 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div style={{ textAlign: "start" }} width="120">
-                                            Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDT to the liquidity pool. Known and approved market makers will use the deposited USDT to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDT from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
+                                            MarginX Maker Liquidity Pool Maker Liquidity Pool is a dedicated fund handled by professional market makers, to provide liquidity and depth on MarginX, and in return to help earn maker rewards.
+                                        </div><br />
+                                        <div style={{ textAlign: "start" }} width="120">
+                                            The mechanics are simple. Users deposit funds into a smart contract on Ethereum which bridges the funds automatically into f(x)Core and, subsequently, MarginX.
+                                        </div><br />
+                                        <div style={{ textAlign: "start" }} width="120">
+                                            Only whitelisted and verified market makers can ‘borrow’ these funds from the liquidity pool to trade, and the funds can only be deployed for market making through a dedicated MarginX wallet address.
                                         </div>
                                     </div>
                                 </div>
@@ -403,7 +409,13 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div style={{ textAlign: "start" }} width="120">
-                                            A portion of deposited USDT could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
+                                            Market makers will refer to an external price oracle and the statistical distribution order to fill in the order book depth.
+                                        </div><br />
+                                        <div style={{ textAlign: "start" }} width="120">
+                                            Statistically speaking, market making is a profitable trading strategy as it earns the spread for every transaction. However, the team has no track record and historical statistics to support this assumption. Thus, there will be neither promised returns nor principal guarantees for this beta version of the Maker Liquidity Pool.
+                                        </div><br />
+                                        <div style={{ textAlign: "start" }} width="120">
+                                            Participants deposit at their own risk. Due to requests for privacy by the external market makers, the team will not reveal their identities at this stage as well.
                                         </div>
                                     </div>
                                 </div>
@@ -414,7 +426,13 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div scope="col" style={{ textAlign: "start" }} width="120">
-                                            Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool. Users must request to withdraw USDT at least 7 days before the current epoch ends in order to be able to withdraw their USDT in the next epoch. If users do not request to withdraw, their deposited USDT is rolled over into the next epoch.
+                                            The Maker Liquidity Pool serves as an upgrade to the Maker Incentive section of the 100-Day Incentive Program. All participants of the Maker Liquidity Pool shall be rewarded in $FX, to an average 12,000 $FX daily (remaining balance from Maker Incentive section).
+                                        </div><br />
+                                        <div scope="col" style={{ textAlign: "start" }} width="120">
+                                            Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool.
+                                        </div><br />
+                                        <div scope="col" style={{ textAlign: "start" }} width="120">
+                                            Users must request to withdraw USDT at least 14 days before the current epoch ends. If users do not request to withdraw, the deposited USDT is rolled over into the next epoch.
                                         </div>
                                     </div>
                                 </div>
@@ -425,15 +443,15 @@ function StakeLiquidity(props) {
                                     </div>
                                     <div className="textBlackSmall" style={{ color: 'white' }}>
                                         <div scope="col" style={{ textAlign: "start" }} width="120">
-                                            Have thought about this pool? Discuss with others
+                                            Need help? Post your question on our forum.
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
                                             <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
+                                                window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                             }}>&#8599; Forums</Buttons>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            {/* <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
-                                            }}>&#8599; Discord</Buttons>
+                                            }}>&#8599; Discord</Buttons> */}
                                         </div>
                                     </div>
                                 </div>
@@ -471,7 +489,7 @@ function StakeLiquidity(props) {
                                 </thead>
                                 <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                     <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">currently being deposited</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Total deposits</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -503,7 +521,7 @@ function StakeLiquidity(props) {
                                 </thead>
                                 <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                     <tr>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">Estimated yield/ day</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Estimated yield / day</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -536,7 +554,7 @@ function StakeLiquidity(props) {
                                     </thead>
                                     <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                         <tr>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT</td>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120"> This pool accepts USDT (ERC-20)</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -633,7 +651,7 @@ function StakeLiquidity(props) {
                                             </thead>
                                             <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                 <tr>
-                                                    <td style={{ textAlign: "start" }} scope="col" width="120">in requested withdraws</td>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120">In requested withdraws</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -683,7 +701,7 @@ function StakeLiquidity(props) {
                                             </thead>
                                             <tbody className="textBlackSmall" style={{ color: 'white' }}>
                                                 <tr>
-                                                    <td style={{ textAlign: "start" }} scope="col" width="120">ready to withdraw</td>
+                                                    <td style={{ textAlign: "start" }} scope="col" width="120">Ready to withdraw</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -775,7 +793,13 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div style={{ textAlign: "start" }} width="120">
-                                    Liquidity, especially when used properly, is a core component of any successful exchange. To further liquidity network effects and incentivize professional market makers, $FX will be distributed to users who deposit USDT to the liquidity pool. Known and approved market makers will use the deposited USDT to make markets on the Protocol, furthering liquidity available across the markets. The market makers will not be able to withdraw the USDT from the Protocol, requiring them to use it only in the Protocol. Only private blockchain wallets can participate. Please do not send funds from an exchange.
+                                    MarginX Maker Liquidity Pool Maker Liquidity Pool is a dedicated fund handled by professional market makers, to provide liquidity and depth on MarginX, and in return to help earn maker rewards.
+                                </div><br />
+                                <div style={{ textAlign: "start" }} width="120">
+                                    The mechanics are simple. Users deposit funds into a smart contract on Ethereum which bridges the funds automatically into f(x)Core and, subsequently, MarginX.
+                                </div><br />
+                                <div style={{ textAlign: "start" }} width="120">
+                                    Only whitelisted and verified market makers can ‘borrow’ these funds from the liquidity pool to trade, and the funds can only be deployed for market making through a dedicated MarginX wallet address.
                                 </div>
                             </div>
                         </div>
@@ -786,7 +810,13 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div style={{ textAlign: "start" }} width="120">
-                                    A portion of deposited USDT could be lost if a market maker were to lose funds (via unprofitable trading) and be unable to replenish the liquidity pool.
+                                    Market makers will refer to an external price oracle and the statistical distribution order to fill in the order book depth.
+                                </div><br />
+                                <div style={{ textAlign: "start" }} width="120">
+                                    Statistically speaking, market making is a profitable trading strategy as it earns the spread for every transaction. However, the team has no track record and historical statistics to support this assumption. Thus, there will be neither promised returns nor principal guarantees for this beta version of the Maker Liquidity Pool.
+                                </div><br />
+                                <div style={{ textAlign: "start" }} width="120">
+                                    Participants deposit at their own risk. Due to requests for privacy by the external market makers, the team will not reveal their identities at this stage as well.
                                 </div>
                             </div>
                         </div>
@@ -797,7 +827,13 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div scope="col" style={{ textAlign: "start" }} width="120">
-                                    Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool. Users must request to withdraw USDT at least 7 days before the current epoch ends in order to be able to withdraw their USDT in the next epoch. If users do not request to withdraw, their deposited USDT is rolled over into the next epoch.
+                                    The Maker Liquidity Pool serves as an upgrade to the Maker Incentive section of the 100-Day Incentive Program. All participants of the Maker Liquidity Pool shall be rewarded in $FX, to an average 12,000 $FX daily (remaining balance from Maker Incentive section).
+                                </div><br />
+                                <div scope="col" style={{ textAlign: "start" }} width="120">
+                                    Users will receive $FX, distributed continuously according to each user's portion of the total USDT in the pool.
+                                </div><br />
+                                <div scope="col" style={{ textAlign: "start" }} width="120">
+                                    Users must request to withdraw USDT at least 14 days before the current epoch ends. If users do not request to withdraw, the deposited USDT is rolled over into the next epoch.
                                 </div>
                             </div>
                         </div>
@@ -808,15 +844,15 @@ function StakeLiquidity(props) {
                             </div>
                             <div className="textBlackSmall" style={{ color: 'white' }}>
                                 <div scope="col" style={{ textAlign: "start" }} width="120">
-                                    Have thought about this pool? Discuss with others
+                                    Need help? Post your question on our forum.
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
                                     <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
-                                        window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
+                                        window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                     }}>&#8599; Forums</Buttons>
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    {/* <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://discord.com/invite/7yUjqadZFq`, '_blank')
-                                    }}>&#8599; Discord</Buttons>
+                                    }}>&#8599; Discord</Buttons> */}
                                 </div>
                             </div>
                         </div>

@@ -45,8 +45,8 @@ function StakeMenu(props) {
                                     style={{ marginLeft: '0px', marginRight: '18px' }} width="110" alt=""
                                 />
                                 <div>
-                                    <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
-                                    <div className='kXLvz mb-3'><b>Welcome to Market Maker Liquidity Pool</b></div>
+                                    <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
+                                    <div className='kXLvz mb-3'><b>MarginX Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
                                         <div>
                                             <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
@@ -151,7 +151,7 @@ function StakeMenu(props) {
                                         <tr>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Wallet</td>
                                             <td style={{ textAlign: "start" }} scope="col" width="120">Deposited</td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Withdrawable</td>
+                                            <td style={{ textAlign: "start" }} scope="col" width="120">Available</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -171,8 +171,8 @@ function StakeMenu(props) {
                                     style={{ marginLeft: '0px', marginRight: '18px' }} width="105" alt=""
                                 />
                                 <div>
-                                    <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
-                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>Welcome to Market Maker Liquidity Pool</b></div>
+                                    <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
+                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>MarginX Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
                                         <div>
                                             <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
@@ -184,8 +184,8 @@ function StakeMenu(props) {
                             </div>
                         </MediaQuery>
                         <MediaQuery maxWidth={450}>
-                            <div className='bzThwT mb-2 mt-3'><b>Introducing MarginX</b></div>
-                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>Welcome to Market Maker Liquidity Pool</b></div>
+                            <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
+                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>MarginX Market Maker Liquidity Pool</b></div>
                             <ButtonGroup>
                                 <div>
                                     <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
@@ -288,7 +288,7 @@ function StakeMenu(props) {
                                     <tr>
                                         <td style={{ textAlign: "start" }} scope="col" width="120">Wallet</td>
                                         <td style={{ textAlign: "start" }} scope="col" width="120">Deposited</td>
-                                        <td style={{ textAlign: "start" }} scope="col" width="120">Withdrawable</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Available</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -299,10 +299,10 @@ function StakeMenu(props) {
 
 
 
-            <div className="mr-auto" style={{ marginTop: '10px', color: 'white', maxWidth: '400px' }}>
+            <div className="mr-auto" style={{ marginTop: '10px', color: 'white' }}>
                 <div className="card-body">
-                    <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Maker LP Incentives</b></div>
-                    <div style={{ color: 'grey' }}>Earn rewards for contributing stability</div>
+                    <div className="textWhite mb-1" style={{ fontSize: '1.5rem', color: 'white' }}><b>Maker LP Incentives</b></div>
+                    <div style={{ color: 'grey' }}>Earn rewards for verified market makers to enhance the order book depth on MarginX.</div>
                 </div>
             </div>
 
@@ -414,7 +414,7 @@ function StakeMenu(props) {
             <MediaQuery minWidth={981}>
                 <div className="mr-auto" style={{ marginTop: '40px', olor: 'white', maxWidth: '400px' }}>
                     <div className="card-body">
-                        <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
+                        <div className="textWhite mb-1" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
                         <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
                     </div>
                 </div>
@@ -423,7 +423,7 @@ function StakeMenu(props) {
             <MediaQuery maxWidth={980}>
                 <div className="mr-auto" style={{ marginTop: '30px', olor: 'white', maxWidth: '400px' }}>
                     <div className="card-body">
-                        <div className="textWhite" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
+                        <div className="textWhite mb-1" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
                         <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
                     </div>
                 </div>
@@ -562,7 +562,7 @@ function StakeMenu(props) {
                     </div>
                 </div>
             </MediaQuery>
-
+            <div style={{ marginTop: '15px', color: 'grey', fontSize: '12px' }}>** ONLY private blockchain wallets can participate. Please DO NOT send funds from an exchange.</div>
         </div >
     );
 }
