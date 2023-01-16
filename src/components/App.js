@@ -808,7 +808,7 @@ class App extends Component {
               <Route path="/" exact > {navMenuContent} </Route>
               <Route path="/liquidity/" exact > {navMenuContent} </Route>
             </Switch>
-            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '0px', paddingRight: '0px' }}>
+            <div className="container-fluid" style={{ position: "relative", paddingTop: "100px", paddingLeft: '15px', paddingRight: '15px' }}>
               <main role="main" className="content ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
                 <Switch>
                   <Route path="/" exact > {stakeContent} </Route>
