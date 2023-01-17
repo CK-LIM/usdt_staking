@@ -152,7 +152,7 @@ function StakeLiquidity(props) {
                                 {
                                     (props.wallet || props.walletConnect) ?
                                         <div className='iqmhrC'>
-                                            {props.userActiveBalanceNextEpoch > 0 ?
+                                            {props.userUSDTBalance > 0 ?
                                                 <PopupDeposit
                                                     userUSDTBalance={props.userUSDTBalance}
                                                     userStakedBalance={props.userStakedBalance}
@@ -446,7 +446,7 @@ function StakeLiquidity(props) {
                                             Need help? Post your question on our forum.
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
-                                            <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', minWidth: '115px', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                             }}>&#8599; Forums</Buttons>
                                             {/* <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {
@@ -563,7 +563,7 @@ function StakeLiquidity(props) {
                         {
                             (props.wallet || props.walletConnect) ?
                                 <div className='iqmhrC'>
-                                    {props.userActiveBalanceNextEpoch > 0 ?
+                                    {props.userUSDTBalance > 0 ?
                                         <PopupDeposit
                                             userUSDTBalance={props.userUSDTBalance}
                                             userStakedBalance={props.userStakedBalance}
@@ -847,7 +847,7 @@ function StakeLiquidity(props) {
                                     Need help? Post your question on our forum.
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'start', marginTop: '15px' }}>
-                                    <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center mr-2" style={{ height: '32px', width: '30%', minWidth: '115px', maxWidth: '122px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                     }}>&#8599; Forums</Buttons>
                                     {/* <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '32px', width: '30%', maxWidth: '122px', border: '0px solid white', color: 'white', padding: "5px 16px", backgroundColor: "#3a3c44", borderRadius: '22px' }} size="lg" onClick={() => {

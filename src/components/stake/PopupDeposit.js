@@ -86,7 +86,7 @@ function PopupDeposit(props) {
 
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Asset</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Deposited: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Deposited: {parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 4 })}</div>
                                 </div>
                                 <div className='rowC' >
                                     <img src={usdt} className='mr-1' width="24px" height="24px" alt="" />
@@ -99,7 +99,7 @@ function PopupDeposit(props) {
                             <div className="label cell2" style={{ backgroundColor: '#101314', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px", marginBottom: '22px' }}>
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Amount</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 4 })}</div>
                                 </div>
 
                                 <div className="input-group">
@@ -137,7 +137,7 @@ function PopupDeposit(props) {
                             <div className="cell2" style={{ backgroundColor: '#101314', border: '1px solid red', borderRadius: '10px', height: "100%", width: "100%", minWidth: "150px", padding: "20px 20px", marginBottom: '22px' }}>
                                 <div className='flex-space-between' style={{ display: 'flex', marginBottom: '40px' }}>
                                     <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '16px' }}>Amount</div>
-                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                    <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px' }}>Balance: {parseFloat(window.web3Eth.utils.fromWei(props.userUSDTBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 4 })}</div>
                                 </div>
 
                                 <div className="input-group">

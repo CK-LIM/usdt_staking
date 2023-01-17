@@ -13,6 +13,7 @@ import usdt from '../images/usdt.svg';
 import fx from '../images/fx.svg';
 import marginxLogo from '../images/marginx-title.svg';
 import CountdownTimer from '../CountdownTimer';
+import bigInt from 'big-integer';
 
 
 function StakeMenu(props) {
@@ -225,11 +226,11 @@ function StakeMenu(props) {
                                         />
                                     </div>
                                 </div>
-                                {props.userEarnedRewardAmount == 0 ?
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                {bigInt(props.userEarnedRewardAmount).value > 0 ?
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
                                         props.claimReward()
                                     }}>Claim</Buttons>
+                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
                                 }
                             </div>
                         </div>
@@ -237,7 +238,6 @@ function StakeMenu(props) {
                         <div className="textWhite" style={{ fontSize: '20px', color: 'white' }}>
                             <big><b>Portfolio</b></big></div>
                         <div style={{ color: 'grey' }}>Track balances</div>
-
 
                         <div>
                             <table>
@@ -398,13 +398,16 @@ function StakeMenu(props) {
                                     props.claimReward()
                                 }} ><div className='linearGradientText center'>Claim</div></Buttons>
                             }
-                            <PopupDeposit
-                                userUSDTBalance={props.userUSDTBalance}
-                                userStakedBalance={props.userStakedBalance}
-                                userUSDTStakingAllowance={props.userUSDTStakingAllowance}
-                                stake={props.stake}
-                                approve={props.approve}
-                            />
+                            {props.userUSDTBalance > 0 ?
+                                <PopupDeposit
+                                    userUSDTBalance={props.userUSDTBalance}
+                                    userStakedBalance={props.userStakedBalance}
+                                    userUSDTStakingAllowance={props.userUSDTStakingAllowance}
+                                    stake={props.stake}
+                                    approve={props.approve}
+                                />
+                                : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '40px', width: '80px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Deposit</Buttons>
+                            }
                         </div>
                     </div> : null
                 }
