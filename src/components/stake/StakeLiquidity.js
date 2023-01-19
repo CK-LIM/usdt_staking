@@ -377,6 +377,24 @@ function StakeLiquidity(props) {
                                 </div>
                             </div>
                         </div>
+
+                        <div className="mr-auto card cardbody" style={{ marginTop: '0px', height: '100%', minWidth: '300px', width: '100%', color: 'white' }}>
+                            <div className="card-body">
+                                <ul className='gradient-text' style={{ marginBottom: '0px' }}>
+                                    <div className='gradient-text' style={{ marginTop: '0px', fontSize: '18px' }}>Things to note:</div>
+                                    <li className='gradient-text' style={{ marginTop: '15px', fontSize: '15px' }}>
+                                        ONLY private blockchain wallets can participate. Please do not send funds from an exchange.</li>
+                                    <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                        There are no principal guarantees for this version of the Maker Liquidity Pool.</li>
+                                    <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                        $ETH is required to pay the gas fees for withdrawals.</li>
+                                    <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                        Participants need to request for withdrawals and claim their rewards manually on maker.marginx.io.</li>
+                                    <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                        MarginX is not be liable for any loss of funds due to user’s negligence.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -384,7 +402,7 @@ function StakeLiquidity(props) {
 
 
                     <MediaQuery minWidth={1001}>
-                        <div className="mr-auto card cardbody" style={{ marginLeft: '15px', marginBottom: '12px', height: '100%', color: 'white', width: 'calc(50% - 1rem)' }}>
+                        <div className="mr-auto card cardbody" style={{ marginLeft: '15px', marginBottom: '0px', height: '100%', color: 'white', width: 'calc(50% - 1rem)' }}>
                             <div className="card-body">
                                 <div style={{ paddingBottom: '10px' }}>
                                     <div className="textBlackSmall" style={{ color: 'white', marginBottom: '10px' }}>
@@ -775,17 +793,33 @@ function StakeLiquidity(props) {
                                     </table>
                                 </div>
                             </div>
-                            {/* </div> */}
+
+                            <div className="mr-auto card cardbody" style={{ marginTop: '0px', height: '100%', minWidth: '300px', width: '100%', color: 'white' }}>
+                                <div className="card-body">
+                                    <ul className='gradient-text' style={{ marginBottom: '0px' }}>
+                                        <div className='gradient-text' style={{ marginTop: '0px', fontSize: '18px' }}>Things to note:</div>
+                                        <li className='gradient-text' style={{ marginTop: '15px', fontSize: '15px' }}>
+                                            ONLY private blockchain wallets can participate. Please do not send funds from an exchange.</li>
+                                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                            There are no principal guarantees for this version of the Maker Liquidity Pool.</li>
+                                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                            $ETH is required to pay the gas fees for withdrawals.</li>
+                                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                            Participants need to request for withdrawals and claim their rewards manually on maker.marginx.io.</li>
+                                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                                            MarginX is not be liable for any loss of funds due to user’s negligence.</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {/* </div> */}
                 </div>
             </MediaQuery>
 
 
 
             <MediaQuery maxWidth={1000}>
-                <div className="mr-auto card cardbody" style={{ marginTop: '20px', marginBottom: '12px', height: '100%', color: 'white' }}>
+                <div className="mr-auto card cardbody" style={{ marginTop: '12px', marginBottom: '12px', height: '100%', color: 'white' }}>
                     <div className="card-body">
                         <div style={{ paddingBottom: '10px' }}>
                             <div className="textBlackSmall" style={{ color: 'white', marginBottom: '10px' }}>

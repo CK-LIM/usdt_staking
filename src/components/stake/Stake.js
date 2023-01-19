@@ -47,12 +47,17 @@ function StakeMenu(props) {
                                 />
                                 <div>
                                     <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
-                                    <div className='kXLvz mb-3'><b>MarginX Market Maker Liquidity Pool</b></div>
+                                    <div className='kXLvz mb-4' style={{ fontSize: '26px' }}><b>MarginX Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
-                                        <div>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://forum.starscan.io/t/proposal-of-maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
+                                        <div className='mr-3'>
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
+                                        </div>
+                                        <div>
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
+                                            }}>&#8599; Read more</Buttons>
                                         </div>
                                     </ButtonGroup>
                                 </div>
@@ -90,12 +95,11 @@ function StakeMenu(props) {
                                     </div>
                                     {
                                         props.userEarnedRewardAmount == 0 ?
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                            : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                            : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px' }} size="lg" onClick={() => {
                                                 props.claimReward()
-                                            }}>Claim</Buttons>
+                                            }} ><div className='linearGradientText center'>Claim</div></Buttons>
                                     }
-
                                 </div>
                             </div>
 
@@ -164,34 +168,44 @@ function StakeMenu(props) {
 
             <MediaQuery maxWidth={980}>
                 <div className="card cardbody badgebody" style={{ marginBottom: '20px', color: 'white', height: '100%', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
-                    <div className="card-body" style={{ marginLeft: "10px", padding: '10px' }}>
-                        <MediaQuery minWidth={451}>
+                    <div className="card-body" style={{ marginLeft: "10px", padding: '15px' }}>
+                        <MediaQuery minWidth={481}>
                             <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
                                 <ImgNextGen
                                     srcWebp={marginxLogo}
                                     style={{ marginLeft: '0px', marginRight: '18px' }} width="105" alt=""
                                 />
                                 <div>
-                                    <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
+                                    <div className='bzThwT mb-2 mt-1'><b>USDT (ERC20)</b></div>
                                     <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>MarginX Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
-                                        <div>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                                window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
+                                        <div className='mr-3'>
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
+                                        </div>
+                                        <div>
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                                window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
+                                            }}>&#8599; Read more</Buttons>
                                         </div>
                                     </ButtonGroup>
                                 </div>
                             </div>
                         </MediaQuery>
-                        <MediaQuery maxWidth={450}>
-                            <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
+                        <MediaQuery maxWidth={480}>
+                            <div className='bzThwT mb-2 mt-1'><b>USDT (ERC20)</b></div>
                             <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>MarginX Market Maker Liquidity Pool</b></div>
                             <ButtonGroup>
-                                <div>
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', marginBottom: '10px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                        window.open(`https://forum.starscan.io/c/marginx/51`, '_blank')
+                                <div className='mr-2'>
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                     }}>&#8599; Learn more</Buttons>
+                                </div>
+                                <div>
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                        window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
+                                    }}>&#8599; Read more</Buttons>
                                 </div>
                             </ButtonGroup>
                         </MediaQuery>
@@ -226,11 +240,12 @@ function StakeMenu(props) {
                                         />
                                     </div>
                                 </div>
-                                {bigInt(props.userEarnedRewardAmount).value > 0 ?
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
-                                        props.claimReward()
-                                    }}>Claim</Buttons>
-                                    : <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '38px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                {
+                                    props.userEarnedRewardAmount == 0 ?
+                                        <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                        : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px' }} size="lg" onClick={() => {
+                                            props.claimReward()
+                                        }} ><div className='linearGradientText center'>Claim</div></Buttons>
                                 }
                             </div>
                         </div>
@@ -307,75 +322,80 @@ function StakeMenu(props) {
             </div>
 
             <div className="lkBtSA" style={{ borderRadius: '20px' }}>
-                <Link to="/liquidity" className='exLink0'>
-                    <div className="card cardbody cell3" style={{ height: '100%', color: 'white', minWidth: '300px', maxWidth: '400px', }}>
-                        <div className="card-body">
-                            <div style={{ marginBottom: "80px" }}>
-                                <div className="float-left textWhite" style={{ fontSize: '1.25rem', color: 'white' }}>
-                                    Liquidity Pool</div>
-                                <div className="float-right" style={{ marginLeft: "10px" }}>
+                {/* <Link to="/liquidity" className='exLink0'> */}
+                <div className="card cardbody" style={{ height: '100%', color: 'white', minWidth: '300px', maxWidth: '400px', }}>
+                    <div className="card-body">
+                        <div style={{ marginBottom: "80px" }}>
+                            <div className="float-left textWhite" style={{ fontSize: '1.25rem', color: 'white' }}>
+                                Liquidity Pool</div>
+                            {/* <div className="float-right" style={{ marginLeft: "10px" }}>
                                     <ImgNextGen
                                         srcWebp={usdt}
                                         width="32px" height="32px" alt=""
                                     />
+                                </div> */}
+                            <Link to="/liquidity" className='exLink0'>
+                                <div className='float-right' style={{ marginLeft: "10px" }}>
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg">More Info</Buttons>
                                 </div>
-                            </div>
-                            <div>
-                                <table>
-                                    <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
-                                        <tr>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">
-                                                {props.blockchainLoading ?
-                                                    <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.poolSize, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })} </div>
-                                                        <div className="JYkOF">
-                                                            <ImgNextGen
-                                                                srcWebp={usdt}
-                                                                style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
-                                                            />
-                                                        </div>
+                            </Link>
+                        </div>
+                        <div>
+                            <table>
+                                <thead className="textBlackSmall" style={{ color: 'white', height: "35px" }}>
+                                    <tr>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">
+                                            {props.blockchainLoading ?
+                                                <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.poolSize, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })} </div>
+                                                    <div className="JYkOF">
+                                                        <ImgNextGen
+                                                            srcWebp={usdt}
+                                                            style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
+                                                        />
                                                     </div>
-                                                    : <span className="loader"></span>}
-                                            </td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">
-                                                {props.blockchainLoading ?
-                                                    <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.poolRewardRate, 'Ether') * 86400).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-                                                        <div className="JYkOF">
-                                                            <ImgNextGen
-                                                                srcWebp={fx}
-                                                                style={{ marginLeft: '6px', marginRight: '0px' }} width="28px" alt=""
-                                                            />
-                                                        </div>
+                                                </div>
+                                                : <span className="loader"></span>}
+                                        </td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">
+                                            {props.blockchainLoading ?
+                                                <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.poolRewardRate, 'Ether') * 86400).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                                                    <div className="JYkOF">
+                                                        <ImgNextGen
+                                                            srcWebp={fx}
+                                                            style={{ marginLeft: '6px', marginRight: '0px' }} width="28px" alt=""
+                                                        />
                                                     </div>
-                                                    : <span className="loader"></span>}
-                                            </td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">
-                                                {props.accountLoading ?
-                                                    <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })} </div>
-                                                        <div className="JYkOF">
-                                                            <ImgNextGen
-                                                                srcWebp={usdt}
-                                                                style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
-                                                            />
-                                                        </div>
+                                                </div>
+                                                : <span className="loader"></span>}
+                                        </td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">
+                                            {props.accountLoading ?
+                                                <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
+                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.userStakedBalance, 'mwei')).toLocaleString('en-US', { maximumFractionDigits: 0 })} </div>
+                                                    <div className="JYkOF">
+                                                        <ImgNextGen
+                                                            srcWebp={usdt}
+                                                            style={{ marginLeft: '6px', marginRight: '0px' }} width="24px" alt=""
+                                                        />
                                                     </div>
-                                                    : <span>-</span>}</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="textBlackSmall" style={{ color: 'white' }}>
-                                        <tr>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Pool Size</td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Yield / day</td>
-                                            <td style={{ textAlign: "start" }} scope="col" width="120">Your Deposit</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                </div>
+                                                : <span>-</span>}</td>
+                                    </tr>
+                                </thead>
+                                <tbody className="textBlackSmall" style={{ color: 'white' }}>
+                                    <tr>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Pool Size</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Yield / day</td>
+                                        <td style={{ textAlign: "start" }} scope="col" width="120">Your Deposit</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </Link>
+                </div>
+                {/* </Link> */}
 
                 {(props.wallet || props.walletConnect) ?
                     <div className='iqmhrB'>
@@ -392,11 +412,12 @@ function StakeMenu(props) {
                             </div>
                         </div>
                         <div className="rowC">
-                            {props.userEarnedRewardAmount == 0 ?
-                                <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
-                                : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px' }} size="lg" onClick={() => {
-                                    props.claimReward()
-                                }} ><div className='linearGradientText center'>Claim</div></Buttons>
+                            {
+                                props.userEarnedRewardAmount == 0 ?
+                                    <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px', cursor: 'not-allowed', opacity: '0.5', }} >Claim</Buttons>
+                                    : <Buttons className="buttonGradientBorder cell3 center" style={{ height: '38px', width: '80px', marginRight: '10px' }} size="lg" onClick={() => {
+                                        props.claimReward()
+                                    }} ><div className='linearGradientText center'>Claim</div></Buttons>
                             }
                             {props.userUSDTBalance > 0 ?
                                 <PopupDeposit
@@ -415,7 +436,7 @@ function StakeMenu(props) {
             </div >
 
             <MediaQuery minWidth={981}>
-                <div className="mr-auto" style={{ marginTop: '40px', olor: 'white', maxWidth: '400px' }}>
+                <div className="mr-auto" style={{ marginTop: '40px', color: 'white', maxWidth: '400px' }}>
                     <div className="card-body">
                         <div className="textWhite mb-1" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
                         <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
@@ -424,7 +445,7 @@ function StakeMenu(props) {
             </MediaQuery>
 
             <MediaQuery maxWidth={980}>
-                <div className="mr-auto" style={{ marginTop: '30px', olor: 'white', maxWidth: '400px' }}>
+                <div className="mr-auto" style={{ marginTop: '30px', color: 'white', maxWidth: '400px' }}>
                     <div className="card-body">
                         <div className="textWhite mb-1" style={{ fontSize: '1.5rem', color: 'white' }}><b>Epoch</b></div>
                         <div style={{ color: 'grey' }}>Each Epoch last 28 days.</div>
@@ -565,7 +586,24 @@ function StakeMenu(props) {
                     </div>
                 </div>
             </MediaQuery>
-            <div style={{ marginTop: '15px', color: 'grey', fontSize: '12px' }}>** ONLY private blockchain wallets can participate. Please DO NOT send funds from an exchange.</div>
+
+            <div className="mr-auto card cardbody" style={{ marginTop: '5px', height: '100%', minWidth: '300px', width: '100%', color: 'white' }}>
+                <div className="card-body">
+                    <ul className='gradient-text' style={{ marginBottom: '0px' }}>
+                        <div className='gradient-text' style={{ marginTop: '0px', fontSize: '18px' }}>Things to note:</div>
+                        <li className='gradient-text' style={{ marginTop: '15px', fontSize: '15px' }}>
+                            ONLY private blockchain wallets can participate. Please do not send funds from an exchange.</li>
+                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                            There are no principal guarantees for this version of the Maker Liquidity Pool.</li>
+                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                            $ETH is required to pay the gas fees for withdrawals.</li>
+                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                            Participants need to request for withdrawals and claim their rewards manually on maker.marginx.io.</li>
+                        <li className='gradient-text' style={{ marginTop: '5px', fontSize: '15px' }}>
+                            MarginX is not be liable for any loss of funds due to user’s negligence.</li>
+                    </ul>
+                </div>
+            </div>
         </div >
     );
 }
