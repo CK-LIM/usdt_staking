@@ -39,7 +39,7 @@ function StakeMenu(props) {
             <MediaQuery minWidth={981}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem', width: '100%' }}>
                     <div className="card cardbody badgebody" style={{ marginBottom: '30px', marginRight: '20px', color: 'white', width: '485px', height: '220px', borderRadius: "25px" }}>
-                        <div className="card-body" style={{ marginLeft: "10px", padding: '10px' }}>
+                        <div className="card-body" style={{ marginLeft: "5px", padding: '10px' }}>
                             <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
                                 <ImgNextGen
                                     srcWebp={marginxLogo}
@@ -48,14 +48,15 @@ function StakeMenu(props) {
                                 <div>
                                     <div className='bzThwT mb-2 mt-3'><b>USDT (ERC20)</b></div>
                                     <div className='kXLvz mb-4' style={{ fontSize: '26px' }}><b>MarginX Market Maker Liquidity Pool</b></div>
+
                                     <ButtonGroup>
                                         <div className='mr-3'>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'white', padding: "5px 16px", backgroundColor: "black", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
                                         <div>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: "white", borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                             }}>&#8599; Read more</Buttons>
                                         </div>
@@ -167,8 +168,8 @@ function StakeMenu(props) {
             </MediaQuery>
 
             <MediaQuery maxWidth={980}>
-                <div className="card cardbody badgebody" style={{ marginBottom: '20px', color: 'white', height: '100%', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
-                    <div className="card-body" style={{ marginLeft: "10px", padding: '15px' }}>
+                <div className="card cardbody badgebody" style={{ marginBottom: '20px', color: 'white', height: '200px', minWidth: '300px', maxWidth: '485px', borderRadius: "25px" }}>
+                    <div className="card-body" style={{ marginLeft: "0px", padding: '15px' }}>
                         <MediaQuery minWidth={481}>
                             <div className="textWhite rowC" style={{ fontSize: '20px', color: 'white' }}>
                                 <ImgNextGen
@@ -177,15 +178,15 @@ function StakeMenu(props) {
                                 />
                                 <div>
                                     <div className='bzThwT mb-2 mt-1'><b>USDT (ERC20)</b></div>
-                                    <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }} ><b>MarginX Market Maker Liquidity Pool</b></div>
+                                    <div className='kXLvz mb-3' style={{ fontSize: '24px', lineHeight: '2.2rem' }} ><b>MarginX Market Maker Liquidity Pool</b></div>
                                     <ButtonGroup>
                                         <div className='mr-3'>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'white', padding: "5px 16px", backgroundColor: 'black', borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                             }}>&#8599; Learn more</Buttons>
                                         </div>
                                         <div>
-                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                            <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: 'white', borderRadius: '22px' }} size="lg" onClick={() => {
                                                 window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                             }}>&#8599; Read more</Buttons>
                                         </div>
@@ -195,15 +196,15 @@ function StakeMenu(props) {
                         </MediaQuery>
                         <MediaQuery maxWidth={480}>
                             <div className='bzThwT mb-2 mt-1'><b>USDT (ERC20)</b></div>
-                            <div className='kXLvz mb-3' style={{ fontSize: '22px', lineHeight: '2rem' }}><b>MarginX Market Maker Liquidity Pool</b></div>
+                            <div className='kXLvz mb-3' style={{ fontSize: '24px', lineHeight: '2.2rem' }}><b>MarginX Market Maker Liquidity Pool</b></div>
                             <ButtonGroup>
                                 <div className='mr-2'>
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'white', padding: "5px 16px", backgroundColor: 'black', borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://youtu.be/2xZAVXF-x2Y`, '_blank')
                                     }}>&#8599; Learn more</Buttons>
                                 </div>
                                 <div>
-                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '134px', border: '0px', color: 'black', padding: "5px 16px", backgroundImage: "linear-gradient(90deg, #18eed8 1%, #a6f616 100%)", borderRadius: '22px' }} size="lg" onClick={() => {
+                                    <Buttons className="textWhiteLargeButton cell2 center" style={{ height: '35px', width: '100%', minWidth: '138px', border: '0px', color: 'black', padding: "5px 16px", backgroundColor: 'white', borderRadius: '22px' }} size="lg" onClick={() => {
                                         window.open(`https://forum.starscan.io/t/maker-liquidity-pool-usdt-erc-20-beta/4955`, '_blank')
                                     }}>&#8599; Read more</Buttons>
                                 </div>
