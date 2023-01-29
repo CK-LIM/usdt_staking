@@ -80,7 +80,11 @@ function StakeMenu(props) {
                                                     <div>
                                                         {props.accountLoading ?
                                                             <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                                <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                                {
+                                                                    props.userEarnedRewardAmount >= 0 ?
+                                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                                        : <div>TBD</div>
+                                                                }
                                                             </div>
                                                             : <span>-</span>}
                                                     </div>
@@ -227,7 +231,11 @@ function StakeMenu(props) {
                                                 <div>
                                                     {props.accountLoading ?
                                                         <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                            <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                            {
+                                                                props.userEarnedRewardAmount >= 0 ?
+                                                                    <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                                    : <div>TBD</div>
+                                                            }
                                                         </div>
                                                         : <span>-</span>}
                                                 </div>
@@ -402,7 +410,11 @@ function StakeMenu(props) {
                     <div className='iqmhrB'>
                         <div className="OYMUv">
                             <div className='eWMWa-D'>
-                                <span>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                                {
+                                    props.userEarnedRewardAmount >= 0 ?
+                                        <span>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                                        : <span>TBD</span>
+                                }
                                 <div><ImgNextGen
                                     srcWebp={fx}
                                     style={{ marginLeft: '6px', marginRight: '15px' }} width="28px" alt=""

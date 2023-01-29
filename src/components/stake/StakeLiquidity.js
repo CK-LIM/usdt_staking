@@ -179,7 +179,11 @@ function StakeLiquidity(props) {
                                                     <td style={{ textAlign: "start" }} scope="col" width="120">
                                                         {props.accountLoading ?
                                                             <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                                <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
+                                                                {
+                                                                    props.userEarnedRewardAmount >= 0 ?
+                                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                                        : <div>TBD</div>
+                                                                }
                                                                 <div className="JYkOF">
                                                                     <ImgNextGen
                                                                         srcWebp={fx}
@@ -607,7 +611,11 @@ function StakeLiquidity(props) {
                                             <td style={{ textAlign: "start" }} scope="col" width="120">
                                                 {props.accountLoading ?
                                                     <div className="eWMWa-D" style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5rem' }}>
-                                                        <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
+                                                        {
+                                                            props.userEarnedRewardAmount >= 0 ?
+                                                                <div>{parseFloat(window.web3Eth.utils.fromWei(props.userEarnedRewardAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 2 })} </div>
+                                                                : <div>TBD</div>
+                                                        }
                                                         <div className="JYkOF">
                                                             <ImgNextGen
                                                                 srcWebp={fx}

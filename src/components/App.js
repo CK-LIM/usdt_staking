@@ -182,26 +182,26 @@ class App extends Component {
     let userResponse0 = this.loadUserUSDTBalance()
     let userResponse1 = this.loadUserStakedBalance()
     let userResponse2 = this.loadUserUSDTStakingAllowance()
-    let userResponse3 = this.loadUserEarnedRewardAmount()
     let userResponse4 = this.loadUserWithdrawableAmount()
     let userResponse5 = this.loadUserInactiveBalanceNextEpoch()
     let userResponse6 = this.loadUserActiveBalanceNextEpoch()
+    let userResponse3 = this.loadUserEarnedRewardAmount()
 
     let userUSDTBalance = await userResponse0
     let userStakedBalance = await userResponse1
     let userUSDTStakingAllowance = await userResponse2
-    let userEarnedRewardAmount = await userResponse3
     let userWithdrawableAmount = await userResponse4
     let userInactiveBalanceNextEpoch = await userResponse5
     let userActiveBalanceNextEpoch = await userResponse6
+    let userEarnedRewardAmount = await userResponse3
 
     this.setState({ userUSDTBalance })
     this.setState({ userStakedBalance })
     this.setState({ userUSDTStakingAllowance })
-    this.setState({ userEarnedRewardAmount })
     this.setState({ userWithdrawableAmount })
     this.setState({ userInactiveBalanceNextEpoch })
     this.setState({ userActiveBalanceNextEpoch })
+    this.setState({ userEarnedRewardAmount })
 
     this.setState({ accountLoading: true })
   }
@@ -223,8 +223,13 @@ class App extends Component {
   }
 
   async loadUserEarnedRewardAmount() {
-    let userReward = await this.state.liquidityStakingV1.methods.getStakerReward(this.state.account).call()
-    return userReward
+    try {
+      let userReward = await this.state.liquidityStakingV1.methods.getStakerReward(this.state.account).call()
+      return userReward
+    } catch (e) {
+      console.log(e)
+      return "-1"
+    }
   }
 
   async loadUserWithdrawableAmount() {
@@ -432,7 +437,8 @@ class App extends Component {
       this.setWalletTrigger(false)
     } else if (accounts[0] !== this.state.account) {
       const accounts = await window.web3.eth.getAccounts()
-      this.setState({ account: accounts[0] })
+      // this.setState({ account: accounts[0] })
+      this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
       const first4Account = this.state.account.substring(0, 5)
       const last4Account = this.state.account.slice(-4)
       this.setState({ first4Account: first4Account })
@@ -536,7 +542,8 @@ class App extends Component {
       this.setState({ accountLoading: state })
     } else {
       const accounts = await window.web3.eth.getAccounts()
-      this.setState({ account: accounts[0] })
+      // this.setState({ account: accounts[0] })
+      this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
       const first4Account = this.state.account.substring(0, 5)
       const last4Account = this.state.account.slice(-4)
       this.setState({ first4Account: first4Account })
