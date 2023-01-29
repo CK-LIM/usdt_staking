@@ -437,8 +437,8 @@ class App extends Component {
       this.setWalletTrigger(false)
     } else if (accounts[0] !== this.state.account) {
       const accounts = await window.web3.eth.getAccounts()
-      // this.setState({ account: accounts[0] })
-      this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
+      this.setState({ account: accounts[0] })
+      // this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
       const first4Account = this.state.account.substring(0, 5)
       const last4Account = this.state.account.slice(-4)
       this.setState({ first4Account: first4Account })
@@ -542,8 +542,8 @@ class App extends Component {
       this.setState({ accountLoading: state })
     } else {
       const accounts = await window.web3.eth.getAccounts()
-      // this.setState({ account: accounts[0] })
-      this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
+      this.setState({ account: accounts[0] })
+      // this.setState({ account: "0x81Fc59079c9cc02386BeFA4814ceA370Be4f7F44" })
       const first4Account = this.state.account.substring(0, 5)
       const last4Account = this.state.account.slice(-4)
       this.setState({ first4Account: first4Account })
