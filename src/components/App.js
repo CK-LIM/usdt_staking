@@ -33,7 +33,6 @@ class App extends Component {
     }
   }
 
-
   // async loadGecko() {
   //   let responseGecko = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=joe%2Cwrapped-avax%2Cpangolin%2Cweth%2Cbaklava%2Cusd-coin%2Ctether%2Cbenqi%2Cterra-luna&vs_currencies=usd`);
   //   const geckoPrice = await responseGecko.json();
@@ -125,7 +124,6 @@ class App extends Component {
     this.setState({ blockchainLoading: true })
   }
 
-  // Pool length
   async loadPoolSize() {
     let poolSize = await this.state.liquidityStakingV1.methods.getTotalActiveBalanceCurrentEpoch().call()
     return poolSize
@@ -148,7 +146,8 @@ class App extends Component {
 
   async loadTimeRemainingNextBlackout() {
     let timeRemainingNextBlackout = 0
-    let blackoutWindow = await this.state.liquidityStakingV1.methods.getBlackoutWindow().call()
+    // let blackoutWindow = await this.state.liquidityStakingV1.methods.getBlackoutWindow().call()
+    let blackoutWindow = "60"
     let poolTimeRemainingInCurrentEpoch = await this.state.liquidityStakingV1.methods.getTimeRemainingInCurrentEpoch().call()
     if (parseInt(poolTimeRemainingInCurrentEpoch) >= parseInt(blackoutWindow)) {
       timeRemainingNextBlackout = poolTimeRemainingInCurrentEpoch - blackoutWindow
@@ -252,7 +251,9 @@ class App extends Component {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
     }
-    window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
+    // window.web3Eth = new Web3(`https://rpc.ankr.com/eth_goerli`);
+    // window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
+    window.web3Eth = new Web3(`https://eth-goerli.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
     try {
       let id = await window.web3Eth.eth.net.isListening()
     } catch (e) {
