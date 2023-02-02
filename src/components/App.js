@@ -253,7 +253,8 @@ class App extends Component {
     }
     // window.web3Eth = new Web3(`https://rpc.ankr.com/eth_goerli`);
     // window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
-    window.web3Eth = new Web3(`https://eth-goerli.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
+    // window.web3Eth = new Web3(`https://eth-goerli.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
+    window.web3Eth = new Web3(`https://rpc.ankr.com/eth`);
     try {
       let id = await window.web3Eth.eth.net.isListening()
     } catch (e) {
@@ -268,8 +269,8 @@ class App extends Component {
       window.web3 = new Web3(window.ethereum)
     }
     // window.web3Eth = new Web3(`https://rpc.ankr.com/eth_goerli`);
-    window.web3Eth = new Web3(`https://rpc.ankr.com/eth`);
-
+    // window.web3Eth = new Web3(`https://rpc.ankr.com/eth`);
+    window.web3Eth = new Web3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_alchemy_goerli}`);
     this.setState({ loading: true })
   }
 
